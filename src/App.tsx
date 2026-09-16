@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./App.css";
+import { PxIcon } from "./PxIcon";
 
 interface Section {
   id: string;
@@ -55,25 +56,25 @@ function App() {
   const [hasWelcomeJumped, setHasWelcomeJumped] = useState<boolean>(false);
 
   const chatMessages = useMemo(() => [
-    "Hey there! I'm Junre, welcome to my interactive portfolio! 🌟",
-    "Scroll around to explore different sections and discover my journey! 🚀",
-    "I love building scalable systems and leading amazing teams! 💼",
-    "Born and raised in beautiful Cebu City, Philippines! 🇵🇭",
-    "From BSIT student at University of Cebu to CTO - what a journey! 🎓",
-    "Currently CTO at Vananaz Technologies Inc. - living the dream! 🚀",
-    "June 17, 1997 - that's when the adventure began! 🎂",
-    "Cebu City shaped me, but technology gave me wings! ✈️",
-    "University of Cebu taught me the basics, experience taught me everything else! 📚",
-    "From island life in Cebu to leading tech teams - the journey continues! 🏝️",
-    "CTO by day, lifelong learner by night! Never stop growing! 🌱",
-    "Building the future, one line of code at a time! 💻",
-    "Proud Cebuano techie making waves in the digital world! 🌊",
-    "Leadership isn't about being in charge, it's about taking care of those in your charge! 👥",
-    "Every bug is a lesson, every feature is an opportunity! 🐛➡️✨",
-    "From junior developer to CTO - proof that persistence pays off! 💪",
-    "Technology changes, but passion for innovation remains constant! 🔥",
-    "Cebu City will always be home, but the cloud is my office! ☁️",
-    "Click me to see more of my thoughts! 💭",
+    "Hey there! I'm Junre, welcome to my interactive portfolio!",
+    "Scroll around to explore different sections and discover my journey!",
+    "I love building scalable systems and leading amazing teams!",
+    "Born and raised in beautiful Cebu City, Philippines!",
+    "From BSIT student at University of Cebu to CTO - what a journey!",
+    "Currently CTO at Vananaz Technologies Inc. - living the dream!",
+    "June 17, 1997 - that's when the adventure began!",
+    "Cebu City shaped me, but technology gave me wings!",
+    "University of Cebu taught me the basics, experience taught me everything else!",
+    "From island life in Cebu to leading tech teams - the journey continues!",
+    "CTO by day, lifelong learner by night! Never stop growing!",
+    "Building the future, one line of code at a time!",
+    "Proud Cebuano techie making waves in the digital world!",
+    "Leadership isn't about being in charge, it's about taking care of those in your charge!",
+    "Every bug is a lesson, every feature is an opportunity!",
+    "From junior developer to CTO - proof that persistence pays off!",
+    "Technology changes, but passion for innovation remains constant!",
+    "Cebu City will always be home, but the cloud is my office!",
+    "Click me to see more of my thoughts!",
   ], []);
   const [pausedElements, setPausedElements] = useState<Set<string>>(new Set());
 
@@ -511,10 +512,26 @@ function App() {
             <div className="loading-ui">
               <h1 className="loading-title">JUNRE'S DIGITAL FOREST</h1>
               <div className="loading-subtitle">
-                {loadingProgress < 30 && "🏃‍♂️ Character running to adventure..."}
-                {loadingProgress >= 30 && loadingProgress < 60 && "🌱 Growing the forest..."}
-                {loadingProgress >= 60 && loadingProgress < 85 && "🌲 Adding the trees..."}
-                {loadingProgress >= 85 && "👨‍💻 Adventure ready!"}
+                {loadingProgress < 30 && (
+                  <>
+                    <PxIcon name="human" className="loading-status-icon" /> Character running to adventure...
+                  </>
+                )}
+                {loadingProgress >= 30 && loadingProgress < 60 && (
+                  <>
+                    <PxIcon name="leaf" className="loading-status-icon" /> Growing the forest...
+                  </>
+                )}
+                {loadingProgress >= 60 && loadingProgress < 85 && (
+                  <>
+                    <PxIcon name="tree-pine" className="loading-status-icon" /> Adding the trees...
+                  </>
+                )}
+                {loadingProgress >= 85 && (
+                  <>
+                    <PxIcon name="check" className="loading-status-icon" /> Adventure ready!
+                  </>
+                )}
               </div>
               
               {/* Progress Bar */}
@@ -530,7 +547,7 @@ function App() {
               
               {loadingProgress === 100 && (
                 <div className="loading-complete">
-                  <div className="press-any-key">✨ Adventure Ready! ✨</div>
+                  <div className="press-any-key"><PxIcon name="sparkles" /> Adventure Ready! <PxIcon name="sparkles" /></div>
                 </div>
               )}
             </div>
@@ -652,27 +669,27 @@ function App() {
           {/* Welcome/Instructions Card */}
           <div className="content-card welcome-card">
             <div className="card-header">
-              <div className="card-icon">🌟</div>
+              <div className="card-icon"><PxIcon name="star" /></div>
               <h3>Welcome to My Digital Forest</h3>
             </div>
             <div className="card-content">
               <div className="instruction-list">
                 <div className="instruction-item">
-                  <span className="instruction-icon">🎮</span>
+                  <span className="instruction-icon"><PxIcon name="gamepad" /></span>
                   <div>
                     <strong>Scroll to explore</strong>
                     <p>Navigate through my interactive portfolio</p>
                   </div>
                 </div>
                 <div className="instruction-item">
-                  <span className="instruction-icon">📖</span>
+                  <span className="instruction-icon"><PxIcon name="book-open" /></span>
                   <div>
                     <strong>Discover my story</strong>
                     <p>Each card reveals different aspects of my journey</p>
                   </div>
                 </div>
                 <div className="instruction-item">
-                  <span className="instruction-icon">💡</span>
+                  <span className="instruction-icon"><PxIcon name="lightbulb" /></span>
                   <div>
                     <strong>See my passion</strong>
                     <p>Skills, projects, and innovation in action</p>
@@ -681,7 +698,7 @@ function App() {
               </div>
               <div className="adventure-banner">
                 <span className="adventure-text">
-                  🚀 Ready for the adventure?
+                  <PxIcon name="flag" /> Ready for the adventure?
                 </span>
               </div>
             </div>
@@ -690,7 +707,7 @@ function App() {
           {/* About Me Card - Enhanced */}
           <div className="content-card about-card">
             <div className="card-header">
-              <div className="card-icon rotating">👨‍💻</div>
+              <div className="card-icon rotating"><PxIcon name="user" /></div>
               <h3>About Me</h3>
             </div>
             <div className="card-content">
@@ -700,28 +717,28 @@ function App() {
               </div>
               <div className="qualities-grid">
                 <div className="quality-item">
-                  <span className="quality-icon">🏗️</span>
+                  <span className="quality-icon"><PxIcon name="building" /></span>
                   <div>
                     <strong>System Architecture</strong>
                     <p>Designing scalable software solutions</p>
                   </div>
                 </div>
                 <div className="quality-item">
-                  <span className="quality-icon">⚙️</span>
+                  <span className="quality-icon"><PxIcon name="gear" /></span>
                   <div>
                     <strong>Solution Management</strong>
                     <p>End-to-end software solution oversight</p>
                   </div>
                 </div>
                 <div className="quality-item">
-                  <span className="quality-icon">🔄</span>
+                  <span className="quality-icon"><PxIcon name="reload" /></span>
                   <div>
                     <strong>CI/CD Expert</strong>
                     <p>Continuous integration & delivery practices</p>
                   </div>
                 </div>
                 <div className="quality-item">
-                  <span className="quality-icon">👥</span>
+                  <span className="quality-icon"><PxIcon name="users" /></span>
                   <div>
                     <strong>Team Leadership</strong>
                     <p>From Software Engineer to Development Manager</p>
@@ -741,14 +758,14 @@ function App() {
           {/* Projects Card - Enhanced */}
           <div className="content-card projects-card">
             <div className="card-header">
-              <div className="card-icon pulse">🛠️</div>
+              <div className="card-icon pulse"><PxIcon name="sliders" /></div>
               <h3>Featured Projects</h3>
             </div>
             <div className="card-content">
               <div className="projects-list">
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon">🏢</span>
+                    <span className="project-icon"><PxIcon name="building" /></span>
                     <h4>Enterprise Web Application</h4>
                     <div className="project-status success">Production</div>
                   </div>
@@ -759,15 +776,15 @@ function App() {
                       <span className="tech-tag">MySQL</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric">🏗️ Scalable architecture</span>
-                      <span className="metric">⚡ High performance</span>
+                      <span className="metric"><PxIcon name="building" /> Scalable architecture</span>
+                      <span className="metric"><PxIcon name="zap" /> High performance</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon">☁️</span>
+                    <span className="project-icon"><PxIcon name="cloud" /></span>
                     <h4>Cloud Infrastructure System</h4>
                     <div className="project-status success">Live</div>
                   </div>
@@ -778,15 +795,15 @@ function App() {
                       <span className="tech-tag">Cloud Firestore</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric">🔄 CI/CD pipeline</span>
-                      <span className="metric">📊 Real-time data</span>
+                      <span className="metric"><PxIcon name="reload" /> CI/CD pipeline</span>
+                      <span className="metric"><PxIcon name="chart" /> Real-time data</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon">🔧</span>
+                    <span className="project-icon"><PxIcon name="sliders" /></span>
                     <h4>REST API Framework</h4>
                     <div className="project-status success">Production</div>
                   </div>
@@ -797,15 +814,15 @@ function App() {
                       <span className="tech-tag">Spring Framework</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric">🔌 RESTful APIs</span>
-                      <span className="metric">⚡ Optimized performance</span>
+                      <span className="metric"><PxIcon name="plug" /> RESTful APIs</span>
+                      <span className="metric"><PxIcon name="zap" /> Optimized performance</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon">📱</span>
+                    <span className="project-icon"><PxIcon name="smartphone" /></span>
                     <h4>Cross-Platform Mobile App</h4>
                     <div className="project-status success">Live</div>
                   </div>
@@ -816,15 +833,15 @@ function App() {
                       <span className="tech-tag">Firebase</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric">📲 Cross-platform</span>
-                      <span className="metric">⚡ Native performance</span>
+                      <span className="metric"><PxIcon name="smartphone" /> Cross-platform</span>
+                      <span className="metric"><PxIcon name="zap" /> Native performance</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon">🌐</span>
+                    <span className="project-icon"><PxIcon name="globe" /></span>
                     <h4>Full-Stack Web Platform</h4>
                     <div className="project-status beta">Development</div>
                   </div>
@@ -835,8 +852,8 @@ function App() {
                       <span className="tech-tag">Laravel</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric">🔧 Full-stack solution</span>
-                      <span className="metric">⚡ Modern framework</span>
+                      <span className="metric"><PxIcon name="sliders" /> Full-stack solution</span>
+                      <span className="metric"><PxIcon name="zap" /> Modern framework</span>
                     </div>
                   </div>
                 </div>
@@ -847,20 +864,20 @@ function App() {
           {/* Innovation Hub Card - New */}
           <div className="content-card innovation-card">
             <div className="card-header">
-              <div className="card-icon glow">💡</div>
+              <div className="card-icon glow"><PxIcon name="lightbulb" /></div>
               <h3>Innovation Hub</h3>
             </div>
             <div className="card-content">
               <div className="innovation-grid">
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">📸</span>
+                    <span className="innovation-icon"><PxIcon name="camera" /></span>
                     <h4>Nice Shot Creatives</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">📸</span>
+                        <span className="preview-icon"><PxIcon name="camera" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Photography Studio</span>
@@ -876,15 +893,15 @@ function App() {
                       <p>Professional photography studio website with booking system and portfolio showcase</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">📱 Mobile-First Design</span>
-                      <span className="feature">📅 Booking Integration</span>
-                      <span className="feature">🖼️ Portfolio Gallery</span>
+                      <span className="feature"><PxIcon name="smartphone" /> Mobile-First Design</span>
+                      <span className="feature"><PxIcon name="calendar" /> Booking Integration</span>
+                      <span className="feature"><PxIcon name="image" /> Portfolio Gallery</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/nice-shot-creatives/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -909,13 +926,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">🖥️</span>
+                    <span className="innovation-icon"><PxIcon name="monitor" /></span>
                     <h4>TerraTech Solutions</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">🖥️</span>
+                        <span className="preview-icon"><PxIcon name="monitor" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Tech Company</span>
@@ -931,15 +948,15 @@ function App() {
                       <p>Complete technology solutions company website with hardware and software services</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🛠️ Service Showcase</span>
-                      <span className="feature">💻 Hardware Catalog</span>
-                      <span className="feature">📞 Contact Integration</span>
+                      <span className="feature"><PxIcon name="sliders" /> Service Showcase</span>
+                      <span className="feature"><PxIcon name="cpu" /> Hardware Catalog</span>
+                      <span className="feature"><PxIcon name="phone" /> Contact Integration</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/terratech/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -964,13 +981,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">🏖️</span>
+                    <span className="innovation-icon"><PxIcon name="sun" /></span>
                     <h4>Saint Bernard Beach House</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">🏖️</span>
+                        <span className="preview-icon"><PxIcon name="sun" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Vacation Rental</span>
@@ -986,15 +1003,15 @@ function App() {
                       <p>Luxury beach house rental website with golden hour theme and booking system</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🌅 Golden Hour Theme</span>
-                      <span className="feature">🏠 Property Showcase</span>
-                      <span className="feature">📅 Reservation System</span>
+                      <span className="feature"><PxIcon name="sun" /> Golden Hour Theme</span>
+                      <span className="feature"><PxIcon name="home" /> Property Showcase</span>
+                      <span className="feature"><PxIcon name="calendar" /> Reservation System</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/beach-house/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -1019,13 +1036,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">🍰</span>
+                    <span className="innovation-icon"><PxIcon name="cake" /></span>
                     <h4>Patisserie Bakeshop</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">🍰</span>
+                        <span className="preview-icon"><PxIcon name="cake" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">French Patisserie</span>
@@ -1041,15 +1058,15 @@ function App() {
                       <p>Exquisite French pastries and artisanal cakes with online ordering and holiday collections</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🍰 Custom Cakes</span>
-                      <span className="feature">🎁 Holiday Collections</span>
-                      <span className="feature">📱 Online Ordering</span>
+                      <span className="feature"><PxIcon name="cake" /> Custom Cakes</span>
+                      <span className="feature"><PxIcon name="gift" /> Holiday Collections</span>
+                      <span className="feature"><PxIcon name="smartphone" /> Online Ordering</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/bakeshop/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -1074,13 +1091,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">📊</span>
+                    <span className="innovation-icon"><PxIcon name="analytics" /></span>
                     <h4>Sales Analytics Dashboard</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">📊</span>
+                        <span className="preview-icon"><PxIcon name="analytics" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Business Analytics</span>
@@ -1096,15 +1113,15 @@ function App() {
                       <p>Comprehensive sales analytics dashboard with revenue tracking, product performance, and regional distribution insights</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">📈 Revenue Analytics</span>
-                      <span className="feature">🌍 Regional Performance</span>
-                      <span className="feature">📊 Product Metrics</span>
+                      <span className="feature"><PxIcon name="chart-line" /> Revenue Analytics</span>
+                      <span className="feature"><PxIcon name="earth" /> Regional Performance</span>
+                      <span className="feature"><PxIcon name="chart" /> Product Metrics</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/reports/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -1129,13 +1146,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">⚡</span>
+                    <span className="innovation-icon"><PxIcon name="zap" /></span>
                     <h4>Pokedex</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">⚡</span>
+                        <span className="preview-icon"><PxIcon name="zap" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Pokemon Database</span>
@@ -1151,15 +1168,15 @@ function App() {
                       <p>Interactive Pokemon database with search functionality and detailed Pokemon information</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🔍 Search Functionality</span>
-                      <span className="feature">📱 Responsive Design</span>
-                      <span className="feature">🎮 Pokemon Database</span>
+                      <span className="feature"><PxIcon name="search" /> Search Functionality</span>
+                      <span className="feature"><PxIcon name="smartphone" /> Responsive Design</span>
+                      <span className="feature"><PxIcon name="gamepad" /> Pokemon Database</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/pokedex/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -1184,13 +1201,13 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">🏗️</span>
+                    <span className="innovation-icon"><PxIcon name="building" /></span>
                     <h4>CE Portfolio</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">🏗️</span>
+                        <span className="preview-icon"><PxIcon name="building" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Civil Engineering</span>
@@ -1206,15 +1223,15 @@ function App() {
                       <p>Professional civil engineering portfolio showcasing infrastructure projects and technical expertise</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🏗️ Project Showcase</span>
-                      <span className="feature">📊 Technical Expertise</span>
-                      <span className="feature">📋 Professional Certifications</span>
+                      <span className="feature"><PxIcon name="building" /> Project Showcase</span>
+                      <span className="feature"><PxIcon name="chart" /> Technical Expertise</span>
+                      <span className="feature"><PxIcon name="clipboard" /> Professional Certifications</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
                         <a href="https://zapicojunredexter.github.io/ce-portfolio/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          🌐 Open Full Site
+                          <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
@@ -1240,13 +1257,68 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon">🎨</span>
+                    <span className="innovation-icon"><PxIcon name="map" /></span>
+                    <h4>GeoScape Explorer</h4>
+                  </div>
+                  <div className="innovation-details">
+                    <div className="project-preview">
+                      <div className="preview-image">
+                        <span className="preview-icon"><PxIcon name="map" /></span>
+                      </div>
+                      <div className="preview-info">
+                        <span className="project-type">3D Geospatial Explorer</span>
+                        <span className="project-url">zapicojunredexter.github.io/3d-map</span>
+                      </div>
+                    </div>
+                    <div className="innovation-tech">
+                      <span className="tech-badge">Three.js</span>
+                      <span className="tech-badge">WebGL</span>
+                      <span className="tech-badge">JavaScript</span>
+                    </div>
+                    <div className="innovation-description">
+                      <p>Interactive 3D geospatial explorer with first-person movement, mouse look, and immersive map navigation</p>
+                    </div>
+                    <div className="project-features">
+                      <span className="feature"><PxIcon name="earth" /> 3D Terrain</span>
+                      <span className="feature"><PxIcon name="keyboard" /> WASD Controls</span>
+                      <span className="feature"><PxIcon name="mouse" /> Mouse Look</span>
+                    </div>
+                    <div className="project-preview-frame">
+                      <div className="preview-header">
+                        <span className="preview-label">Live Preview</span>
+                        <a href="https://zapicojunredexter.github.io/3d-map/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                          <PxIcon name="external-link" /> Open Full Site
+                        </a>
+                      </div>
+                      <div className="iframe-wrapper">
+                        <iframe 
+                          src="https://zapicojunredexter.github.io/3d-map/"
+                          title="GeoScape Explorer Preview"
+                          className="project-iframe"
+                          loading="lazy"
+                          style={{
+                            width: '1280px',
+                            height: '800px'
+                          }}
+                        />
+                        <div 
+                          className="iframe-overlay" 
+                          onClick={() => window.open('https://zapicojunredexter.github.io/3d-map/', '_blank')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="innovation-item">
+                  <div className="innovation-header">
+                    <span className="innovation-icon"><PxIcon name="brush" /></span>
                     <h4>Interactive Portfolio</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon">🎮</span>
+                        <span className="preview-icon"><PxIcon name="gamepad" /></span>
                       </div>
                       <div className="preview-info">
                         <span className="project-type">Portfolio</span>
@@ -1262,18 +1334,18 @@ function App() {
                       <p>Mario-style interactive portfolio with parallax scrolling and animated character</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature">🎮 Game-Style UI</span>
-                      <span className="feature">🌲 Parallax Background</span>
-                      <span className="feature">👤 Animated Character</span>
+                      <span className="feature"><PxIcon name="gamepad" /> Game-Style UI</span>
+                      <span className="feature"><PxIcon name="tree-pine" /> Parallax Background</span>
+                      <span className="feature"><PxIcon name="user" /> Animated Character</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Current Portfolio</span>
-                        <span className="preview-link">🎮 You're viewing it now!</span>
+                        <span className="preview-link"><PxIcon name="gamepad" /> You're viewing it now!</span>
                       </div>
                       <div className="portfolio-preview">
                         <div className="preview-placeholder">
-                          <span className="preview-icon-large">🎮</span>
+                          <span className="preview-icon-large"><PxIcon name="gamepad" /></span>
                           <p>Mario-style Interactive Portfolio</p>
                           <span className="preview-subtitle">Scroll to explore!</span>
                         </div>
@@ -1283,7 +1355,7 @@ function App() {
                 </div>
               </div>
               <div className="innovation-footer">
-                <span className="future-icon">🔮</span>
+                <span className="future-icon"><PxIcon name="sparkle" /></span>
                 <p>Showcasing real projects with innovative design</p>
               </div>
             </div>
@@ -1294,14 +1366,14 @@ function App() {
           {/* Skills Card - Enhanced */}
           <div className="content-card skills-card">
             <div className="card-header">
-              <div className="card-icon sparkle">⭐</div>
+              <div className="card-icon sparkle"><PxIcon name="star" /></div>
               <h3>Technical Arsenal</h3>
             </div>
             <div className="card-content">
               <div className="skills-categories">
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon">💼</span>
+                    <span className="category-icon"><PxIcon name="briefcase" /></span>
                     <h4>Leadership & Management</h4>
                   </div>
                   <div className="skill-tags">
@@ -1317,7 +1389,7 @@ function App() {
 
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon">🎨</span>
+                    <span className="category-icon"><PxIcon name="brush" /></span>
                     <h4>Frontend</h4>
                   </div>
                   <div className="skill-tags">
@@ -1326,12 +1398,13 @@ function App() {
                     <span className="skill-tag vue">Vue.js</span>
                     <span className="skill-tag angular">AngularJS</span>
                     <span className="skill-tag ts">TypeScript</span>
+                    <span className="skill-tag threejs">Three.js</span>
                   </div>
                 </div>
 
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon">⚙️</span>
+                    <span className="category-icon"><PxIcon name="gear" /></span>
                     <h4>Backend</h4>
                   </div>
                   <div className="skill-tags">
@@ -1347,7 +1420,7 @@ function App() {
 
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon">☁️</span>
+                    <span className="category-icon"><PxIcon name="cloud" /></span>
                     <h4>Cloud & DevOps</h4>
                   </div>
                   <div className="skill-tags">
@@ -1360,7 +1433,7 @@ function App() {
 
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon">💾</span>
+                    <span className="category-icon"><PxIcon name="database" /></span>
                     <h4>Database & Tools</h4>
                   </div>
                   <div className="skill-tags">
@@ -1373,7 +1446,7 @@ function App() {
                 </div>
               </div>
               <div className="expanding-note">
-                <span className="growth-icon">📈</span>
+                <span className="growth-icon"><PxIcon name="chart-line" /></span>
                 <p>Always expanding this toolkit!</p>
               </div>
             </div>
@@ -1382,7 +1455,7 @@ function App() {
           {/* Experience Card - New */}
           <div className="content-card experience-card">
             <div className="card-header">
-              <div className="card-icon bounce">💼</div>
+              <div className="card-icon bounce"><PxIcon name="briefcase" /></div>
               <h3>Professional Journey</h3>
             </div>
             <div className="card-content">
@@ -1397,13 +1470,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        🏗️ System architecture & solution management
+                        <PxIcon name="building" /> System architecture & solution management
                       </div>
                       <div className="achievement">
-                        🔄 CI/CD implementation & optimization
+                        <PxIcon name="reload" /> CI/CD implementation & optimization
                       </div>
                       <div className="achievement">
-                        👥 Leading development teams
+                        <PxIcon name="users" /> Leading development teams
                       </div>
                     </div>
                   </div>
@@ -1419,13 +1492,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        ☁️ AWS & cloud infrastructure
+                        <PxIcon name="cloud" /> AWS & cloud infrastructure
                       </div>
                       <div className="achievement">
-                        🔧 Technical leadership & mentoring
+                        <PxIcon name="teach" /> Technical leadership & mentoring
                       </div>
                       <div className="achievement">
-                        📊 Project oversight & delivery
+                        <PxIcon name="chart" /> Project oversight & delivery
                       </div>
                     </div>
                   </div>
@@ -1441,13 +1514,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        🌐 Full-stack development (PHP, Laravel)
+                        <PxIcon name="globe" /> Full-stack development (PHP, Laravel)
                       </div>
                       <div className="achievement">
-                        💾 Database design & optimization (MySQL)
+                        <PxIcon name="database" /> Database design & optimization (MySQL)
                       </div>
                       <div className="achievement">
-                        🔌 REST API development & integration
+                        <PxIcon name="plug" /> REST API development & integration
                       </div>
                     </div>
                   </div>
@@ -1463,13 +1536,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        📱 Mobile app development (React Native)
+                        <PxIcon name="smartphone" /> Mobile app development (React Native)
                       </div>
                       <div className="achievement">
-                        🔧 Version control & collaboration (Git)
+                        <PxIcon name="git-branch" /> Version control & collaboration (Git)
                       </div>
                       <div className="achievement">
-                        📝 Google Apps Script automation
+                        <PxIcon name="script" /> Google Apps Script automation
                       </div>
                     </div>
                   </div>
@@ -1481,7 +1554,7 @@ function App() {
           {/* Final Contact Card */}
           <div className="content-card final-contact-card">
             <div className="card-header">
-              <div className="card-icon wave">🚀</div>
+              <div className="card-icon wave"><PxIcon name="send" /></div>
               <h3>Let's Connect!</h3>
             </div>
             <div className="card-content">
@@ -1491,7 +1564,7 @@ function App() {
               </div>
               <div className="contact-methods-grid">
                 <div className="contact-method" onClick={() => handleContactCopy('zapicojunredexter@gmail.com', 'Email')}>
-                  <span className="contact-icon">📧</span>
+                  <span className="contact-icon"><PxIcon name="mail" /></span>
                   <div className="contact-info">
                     <strong>Email</strong>
                     <p className="contact-url">zapicojunredexter@gmail.com</p>
@@ -1499,7 +1572,7 @@ function App() {
                   <div className="copy-hint">Click to copy</div>
                 </div>
                 <div className="contact-method" onClick={() => handleContactCopy('https://www.linkedin.com/in/junre-dexter-zapico-23a70413a/', 'LinkedIn')}>
-                  <span className="contact-icon">💼</span>
+                  <span className="contact-icon"><PxIcon name="linkedin" /></span>
                   <div className="contact-info">
                     <strong>LinkedIn</strong>
                     <p className="contact-url">linkedin.com/in/junre-dexter-zapico-23a70413a</p>
@@ -1507,24 +1580,37 @@ function App() {
                   <div className="copy-hint">Click to copy</div>
                 </div>
                 <div className="contact-method" onClick={() => handleContactCopy('https://github.com/zapicojunredexter', 'GitHub')}>
-                  <span className="contact-icon">🐙</span>
+                  <span className="contact-icon"><PxIcon name="github" /></span>
                   <div className="contact-info">
                     <strong>GitHub</strong>
                     <p className="contact-url">github.com/zapicojunredexter</p>
                   </div>
                   <div className="copy-hint">Click to copy</div>
                 </div>
+                <a
+                  className="contact-method resume-link"
+                  href={`${process.env.PUBLIC_URL}/resume.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="contact-icon"><PxIcon name="file-text" /></span>
+                  <div className="contact-info">
+                    <strong>Resume</strong>
+                    <p className="contact-url">View or download PDF</p>
+                  </div>
+                  <div className="copy-hint">Open PDF</div>
+                </a>
               </div>
               <div className="opportunities-section">
                 <div className="opportunities-header">
-                  <span className="opportunity-icon">💡</span>
+                  <span className="opportunity-icon"><PxIcon name="lightbulb" /></span>
                   <h4>Open to Opportunities</h4>
                 </div>
                 <div className="opportunity-types">
-                  <span className="opportunity-tag">☕ Coffee Chats</span>
-                  <span className="opportunity-tag">🚀 Project Ideas</span>
-                  <span className="opportunity-tag">💼 Job Opportunities</span>
-                  <span className="opportunity-tag">🤝 Collaborations</span>
+                  <span className="opportunity-tag"><PxIcon name="coffee" /> Coffee Chats</span>
+                  <span className="opportunity-tag"><PxIcon name="lightbulb" /> Project Ideas</span>
+                  <span className="opportunity-tag"><PxIcon name="briefcase" /> Job Opportunities</span>
+                  <span className="opportunity-tag"><PxIcon name="users" /> Collaborations</span>
                 </div>
               </div>
             </div>
@@ -1533,7 +1619,7 @@ function App() {
           {/* Contact Form Card */}
           <div className="content-card contact-form-card">
             <div className="card-header">
-              <div className="card-icon float">📧</div>
+              <div className="card-icon float"><PxIcon name="mail" /></div>
               <h3>Send Me a Message</h3>
             </div>
             <div className="card-content">
@@ -1547,7 +1633,7 @@ function App() {
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">
-                      <span className="label-icon">👤</span>
+                      <span className="label-icon"><PxIcon name="user" /></span>
                       Your Name
                     </label>
                     <input
@@ -1560,7 +1646,7 @@ function App() {
                   </div>
                   <div className="form-group">
                     <label htmlFor="email">
-                      <span className="label-icon">📧</span>
+                      <span className="label-icon"><PxIcon name="mail" /></span>
                       Your Email
                     </label>
                     <input
@@ -1574,23 +1660,21 @@ function App() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="subject">
-                    <span className="label-icon">💼</span>
+                    <span className="label-icon"><PxIcon name="briefcase" /></span>
                     Subject
                   </label>
                   <select id="subject" name="subject" required>
                     <option value="">What would you like to discuss?</option>
-                    <option value="collaboration">
-                      🤝 Collaboration Opportunity
-                    </option>
-                    <option value="job">💼 Job Opportunity</option>
-                    <option value="project">🚀 Project Discussion</option>
-                    <option value="consultation">💡 Consultation</option>
-                    <option value="other">💬 Other</option>
+                    <option value="collaboration">Collaboration Opportunity</option>
+                    <option value="job">Job Opportunity</option>
+                    <option value="project">Project Discussion</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="message">
-                    <span className="label-icon">✍️</span>
+                    <span className="label-icon"><PxIcon name="pencil" /></span>
                     Your Message
                   </label>
                   <textarea
@@ -1602,7 +1686,7 @@ function App() {
                   ></textarea>
                 </div>
                 <button type="submit" className="submit-btn">
-                  <span className="btn-icon">🚀</span>
+                  <span className="btn-icon"><PxIcon name="send" /></span>
                   Send Message
                   <div className="btn-ripple"></div>
                 </button>
@@ -1642,7 +1726,7 @@ function App() {
         {showCopyNotification && (
           <div className="copy-notification">
             <div className="copy-notification-content">
-              <span className="copy-icon">✅</span>
+              <span className="copy-icon"><PxIcon name="check" /></span>
               <span className="copy-text">{copyNotificationText}</span>
             </div>
           </div>

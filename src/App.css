@@ -4190,6 +4190,7 @@ body {
 .skill-tag.reactnative { background: linear-gradient(135deg, #61DAFB, #0D7377); color: white; }
 .skill-tag.vue { background: linear-gradient(135deg, #4FC08D, #42B883); color: white; }
 .skill-tag.angular { background: linear-gradient(135deg, #DD0031, #B50029); color: white; }
+.skill-tag.threejs { background: linear-gradient(135deg, #049EF4, #000000); color: white; }
 
 /* Backend Skills */
 .skill-tag.php { background: linear-gradient(135deg, #8993BE, #6B7BB0); color: white; }
@@ -4464,6 +4465,11 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
   border-color: rgba(139, 69, 19, 0.2);
+}
+
+a.contact-method.resume-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .contact-icon {
@@ -5132,5 +5138,77 @@ body {
     transform: translateY(-3px);
   }
 }
+
+/* Pixelarticons — theme-aligned font icons */
+.px-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  color: inherit;
+  speak: none;
+}
+
+.card-icon .px-icon {
+  font-size: 28px;
+  color: #8B4513;
+}
+
+.instruction-icon .px-icon,
+.quality-icon .px-icon,
+.project-icon .px-icon,
+.innovation-icon .px-icon,
+.category-icon .px-icon,
+.contact-icon .px-icon,
+.opportunity-icon .px-icon,
+.future-icon .px-icon,
+.growth-icon .px-icon,
+.label-icon .px-icon,
+.btn-icon .px-icon,
+.copy-icon .px-icon,
+.preview-icon .px-icon {
+  font-size: 18px;
+  color: #8B4513;
+}
+
+.preview-icon-large .px-icon {
+  font-size: 48px;
+  color: #8B4513;
+}
+
+.loading-status-icon,
+.press-any-key .px-icon {
+  font-size: 20px;
+  margin-right: 6px;
+  color: #8B4513;
+  vertical-align: -2px;
+}
+
+.feature,
+.metric,
+.opportunity-tag,
+.achievement,
+.adventure-text,
+.preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.feature .px-icon,
+.metric .px-icon,
+.opportunity-tag .px-icon,
+.achievement .px-icon,
+.adventure-text .px-icon,
+.preview-link .px-icon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.achievement {
+  display: flex;
+}
+
 
 

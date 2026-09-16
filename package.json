@@ -1,7 +1,7 @@
 {
   "name": "junre",
   "version": "0.1.0",
-  "homepage": "https://zapicojunredexter.github.io/portfolio",
+  "homepage": "https://zapicojunredexter.github.io/",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

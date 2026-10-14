@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import "./App.css";
 import { PxIcon } from "./PxIcon";
 
@@ -6,6 +6,75 @@ interface Section {
   id: string;
   title: string;
   active: boolean;
+}
+
+/** Pixels scrolled per animation frame while a direction button is held */
+const CHARACTER_NAV_SPEED = 16;
+
+const isMobileViewport = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+
+/** Live project previews — never auto-load iframes on mobile (OOM / tab kills). */
+function ProjectPreviewFrame({
+  src,
+  title,
+  href,
+}: {
+  src: string;
+  title: string;
+  href: string;
+}) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [loadIframe, setLoadIframe] = useState(false);
+
+  useEffect(() => {
+    if (isMobileViewport()) return;
+
+    const node = wrapperRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setLoadIframe(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "80px", threshold: 0.01 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="iframe-wrapper" ref={wrapperRef}>
+      {loadIframe ? (
+        <iframe
+          src={src}
+          title={title}
+          className="project-iframe"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          style={{ width: "1280px", height: "800px" }}
+        />
+      ) : (
+        <div className="iframe-placeholder" aria-hidden="true">
+          <span className="iframe-placeholder-icon">
+            <PxIcon name="external-link" />
+          </span>
+          <span className="iframe-placeholder-text">Tap to open live site</span>
+        </div>
+      )}
+      <div
+        className="iframe-overlay"
+        onClick={() => window.open(href, "_blank", "noopener,noreferrer")}
+        role="link"
+        aria-label={`Open ${title}`}
+      />
+    </div>
+  );
 }
 
 function App() {
@@ -67,7 +136,7 @@ function App() {
     "Happy to talk about projects, roles, or just swap notes.",
     "Click me if you want another line.",
   ], []);
-  const [pausedElements, setPausedElements] = useState<Set<string>>(new Set());
+  const pausedElementsRef = useRef<Set<string>>(new Set());
 
   // Loading animation effect
   useEffect(() => {
@@ -97,8 +166,10 @@ function App() {
     };
   }, []);
 
-  // Auto-scroll for content cards
+  // Auto-scroll for content cards (desktop only — skips mobile to avoid jank/OOM)
   useEffect(() => {
+    if (isMobileViewport()) return;
+
     const scrollableElements = [
       { selector: ".projects-list", speed: 1 },
       { selector: ".innovation-grid", speed: 0.8 },
@@ -106,12 +177,12 @@ function App() {
       { selector: ".timeline", speed: 0.6 },
     ];
 
-    // Add hover event listeners to each scrollable element
     const eventListeners: Array<{
       element: HTMLElement;
       enter: () => void;
       leave: () => void;
     }> = [];
+    const resetTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
     scrollableElements.forEach(({ selector }) => {
       const element = document.querySelector(selector) as HTMLElement;
@@ -119,15 +190,11 @@ function App() {
 
       if (element && parentCard) {
         const handleMouseEnter = () => {
-          setPausedElements((prev) => new Set(prev).add(selector));
+          pausedElementsRef.current.add(selector);
         };
 
         const handleMouseLeave = () => {
-          setPausedElements((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(selector);
-            return newSet;
-          });
+          pausedElementsRef.current.delete(selector);
         };
 
         parentCard.addEventListener("mouseenter", handleMouseEnter);
@@ -141,44 +208,50 @@ function App() {
       }
     });
 
+    const cached = scrollableElements
+      .map(({ selector, speed }) => {
+        const element = document.querySelector(selector) as HTMLElement | null;
+        return element ? { selector, speed, element } : null;
+      })
+      .filter(Boolean) as Array<{
+      selector: string;
+      speed: number;
+      element: HTMLElement;
+    }>;
+
     const autoScrollCards = () => {
-      scrollableElements.forEach(({ selector, speed }) => {
-        const element = document.querySelector(selector) as HTMLElement;
+      cached.forEach(({ selector, speed, element }) => {
+        if (pausedElementsRef.current.has(selector)) return;
 
-        // Skip if this element is paused (hovered)
-        if (element && !pausedElements.has(selector)) {
-          const scrollStep = speed; // pixels per step
-          const maxScroll = element.scrollHeight - element.clientHeight;
+        const maxScroll = element.scrollHeight - element.clientHeight;
+        if (maxScroll <= 0) return;
 
-          if (maxScroll <= 0) return; // Skip if no scrollable content
-
-          if (element.scrollTop >= maxScroll) {
-            // Pause at bottom for 2 seconds, then reset
-            setTimeout(() => {
-              if (!pausedElements.has(selector)) {
-                element.scrollTop = 0;
-              }
-            }, 2000);
-          } else {
-            // Scroll down gradually
-            element.scrollTop += scrollStep;
-          }
+        if (element.scrollTop >= maxScroll - 1) {
+          if (resetTimers.has(selector)) return;
+          const timer = setTimeout(() => {
+            resetTimers.delete(selector);
+            if (!pausedElementsRef.current.has(selector)) {
+              element.scrollTop = 0;
+            }
+          }, 2000);
+          resetTimers.set(selector, timer);
+        } else {
+          element.scrollTop += speed;
         }
       });
     };
 
-    // Auto-scroll every 50ms (20 FPS for smooth animation)
     const interval = setInterval(autoScrollCards, 50);
 
     return () => {
       clearInterval(interval);
-      // Clean up hover listeners
+      resetTimers.forEach((timer) => clearTimeout(timer));
       eventListeners.forEach(({ element, enter, leave }) => {
         element.removeEventListener("mouseenter", enter);
         element.removeEventListener("mouseleave", leave);
       });
     };
-  }, [pausedElements]);
+  }, []);
 
   // Contact form submission handler
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -265,6 +338,62 @@ function App() {
     }
   }, [isJumping]);
 
+  const canGoLeft = scrollProgress > 0.02;
+  const canGoRight = scrollProgress < 0.98;
+
+  const navDirectionRef = useRef<"left" | "right" | null>(null);
+  const navRafRef = useRef<number | null>(null);
+
+  const stopCharacterNav = useCallback(() => {
+    navDirectionRef.current = null;
+    if (navRafRef.current != null) {
+      cancelAnimationFrame(navRafRef.current);
+      navRafRef.current = null;
+    }
+  }, []);
+
+  const tickCharacterNav = useCallback(() => {
+    const direction = navDirectionRef.current;
+    if (!direction) {
+      navRafRef.current = null;
+      return;
+    }
+
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const y = window.pageYOffset;
+
+    if (
+      (direction === "left" && y <= 0) ||
+      (direction === "right" && y >= maxScroll - 1)
+    ) {
+      stopCharacterNav();
+      return;
+    }
+
+    window.scrollBy(
+      0,
+      direction === "right" ? CHARACTER_NAV_SPEED : -CHARACTER_NAV_SPEED
+    );
+    navRafRef.current = requestAnimationFrame(tickCharacterNav);
+  }, [stopCharacterNav]);
+
+  const startCharacterNav = useCallback(
+    (direction: "left" | "right") =>
+      (e: React.PointerEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.currentTarget.setPointerCapture?.(e.pointerId);
+        navDirectionRef.current = direction;
+        if (navRafRef.current == null) {
+          navRafRef.current = requestAnimationFrame(tickCharacterNav);
+        }
+      },
+    [tickCharacterNav]
+  );
+
+  useEffect(() => () => stopCharacterNav(), [stopCharacterNav]);
+
   // Preload person images
   useEffect(() => {
     const preloadImages = () => {
@@ -325,9 +454,18 @@ function App() {
     };
   }, []);
 
+  // Keep scroll hot-path values in refs so the window listener stays stable
+  const lastScrollTopRef = useRef(lastScrollTop);
+  const scrollTimeoutRef = useRef(scrollTimeout);
+  const isScrollGestureRef = useRef(false);
+  lastScrollTopRef.current = lastScrollTop;
+  scrollTimeoutRef.current = scrollTimeout;
+
   // Mouse tracking and scroll-based 3D animation
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Skip unused mouse tracking on touch devices
+      if (window.matchMedia("(pointer: coarse)").matches) return;
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
@@ -335,31 +473,32 @@ function App() {
       const scrollTop: number = window.pageYOffset;
       const docHeight: number =
         document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent: number = scrollTop / docHeight;
+      const scrollPercent: number = docHeight > 0 ? scrollTop / docHeight : 0;
 
       setScrollProgress(scrollPercent);
 
       // Detect scroll direction
-      const direction = scrollTop > lastScrollTop ? "down" : "up";
+      const direction = scrollTop > lastScrollTopRef.current ? "down" : "up";
       setScrollDirection(direction);
       setLastScrollTop(scrollTop);
 
-      // Walking animation logic
-      setIsScrolling(true);
-
-      // Hide chat bubble when scrolling starts and prepare new message
-      setShowChatBubble(false);
-      getRandomMessage(); // Pick new message while bubble is hidden
+      // Walking animation + chat side-effects once per gesture
+      if (!isScrollGestureRef.current) {
+        isScrollGestureRef.current = true;
+        setIsScrolling(true);
+        setShowChatBubble(false);
+        getRandomMessage();
+      }
 
       // Clear existing timeout
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
 
       // Increment scroll counter and update frame
       setScrollEventCounter((prev) => {
         const newCounter = prev + 1;
-        
+
         // Only change frame every 8 scroll events (adjust this number to make walking faster/slower)
         if (newCounter % 8 === 0) {
           setCurrentPersonFrame((currentFrame) => {
@@ -368,12 +507,13 @@ function App() {
             return currentFrame + 1;
           });
         }
-        
+
         return newCounter;
       });
 
       // Set timeout to stop walking animation
       const newTimeout = setTimeout(() => {
+        isScrollGestureRef.current = false;
         setIsScrolling(false);
         setCurrentPersonFrame(1); // Reset to idle frame
         setScrollEventCounter(0); // Reset counter when stopping
@@ -388,13 +528,13 @@ function App() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollTimeout, scrollEventCounter, lastScrollTop, getRandomMessage]);
+  }, [getRandomMessage]);
 
   // Typewriter effect
   useEffect(() => {
@@ -687,7 +827,7 @@ function App() {
               </div>
               <div className="adventure-banner">
                 <span className="adventure-text">
-                  <PxIcon name="flag" /> Scroll to start
+                  <PxIcon name="flag" /> Scroll/Use the buttons to move
                 </span>
               </div>
             </div>
@@ -888,22 +1028,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/3d-map/"
-                          title="GeoScape Explorer Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/3d-map/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/3d-map/"
+                        title="GeoScape Explorer Preview"
+                        href="https://zapicojunredexter.github.io/3d-map/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -943,22 +1072,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/jp-tutor/"
-                          title="Kana Practice Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/jp-tutor/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/jp-tutor/"
+                        title="Kana Practice Preview"
+                        href="https://zapicojunredexter.github.io/jp-tutor/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1042,22 +1160,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/reports/"
-                          title="Sales Analytics Dashboard Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/reports/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/reports/"
+                        title="Sales Analytics Dashboard Preview"
+                        href="https://zapicojunredexter.github.io/reports/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1097,22 +1204,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/nice-shot-creatives/"
-                          title="Nice Shot Creatives Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/nice-shot-creatives/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/nice-shot-creatives/"
+                        title="Nice Shot Creatives Preview"
+                        href="https://zapicojunredexter.github.io/nice-shot-creatives/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1152,22 +1248,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/pokedex/"
-                          title="Pokedex Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/pokedex/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/pokedex/"
+                        title="Pokedex Preview"
+                        href="https://zapicojunredexter.github.io/pokedex/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1207,22 +1292,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/beach-house/"
-                          title="Saint Bernard Beach House Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/beach-house/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/beach-house/"
+                        title="Saint Bernard Beach House Preview"
+                        href="https://zapicojunredexter.github.io/beach-house/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1262,22 +1336,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/bakeshop/"
-                          title="Patisserie Bakeshop Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/bakeshop/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/bakeshop/"
+                        title="Patisserie Bakeshop Preview"
+                        href="https://zapicojunredexter.github.io/bakeshop/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1317,22 +1380,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/terratech/"
-                          title="TerraTech Solutions Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/terratech/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/terratech/"
+                        title="TerraTech Solutions Preview"
+                        href="https://zapicojunredexter.github.io/terratech/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1372,22 +1424,11 @@ function App() {
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/ce-portfolio/"
-                          title="CE Portfolio Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/ce-portfolio/', '_blank')}
-                        />
-                      </div>
+                      <ProjectPreviewFrame
+                        src="https://zapicojunredexter.github.io/ce-portfolio/"
+                        title="CE Portfolio Preview"
+                        href="https://zapicojunredexter.github.io/ce-portfolio/"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1739,8 +1780,9 @@ function App() {
         <div
           className={`person-character ${isScrolling ? "walking" : "idle"} ${isJumping ? "jumping" : ""}`}
           style={{
-            transform: `translateY(${characterJump}px) ${
-              scrollDirection === "up" ? "scaleX(-1)" : ""
+            // Keep translateX(-50%) here — inline transform overrides the CSS centering
+            transform: `translateX(-50%) translateY(${characterJump}px)${
+              scrollDirection === "up" ? " scaleX(-1)" : ""
             }`,
           }}
         >
@@ -1749,6 +1791,38 @@ function App() {
             alt="Person Character"
             className="person-sprite"
           />
+        </div>
+
+        {/* Direction buttons flanking the character — hold to scroll */}
+        <div className="character-nav">
+          {canGoLeft && (
+            <button
+              type="button"
+              className="character-nav-btn character-nav-left"
+              onPointerDown={startCharacterNav("left")}
+              onPointerUp={stopCharacterNav}
+              onPointerCancel={stopCharacterNav}
+              onLostPointerCapture={stopCharacterNav}
+              onContextMenu={(e) => e.preventDefault()}
+              aria-label="Hold to go left"
+            >
+              <PxIcon name="arrow-left" />
+            </button>
+          )}
+          {canGoRight && (
+            <button
+              type="button"
+              className="character-nav-btn character-nav-right"
+              onPointerDown={startCharacterNav("right")}
+              onPointerUp={stopCharacterNav}
+              onPointerCancel={stopCharacterNav}
+              onLostPointerCapture={stopCharacterNav}
+              onContextMenu={(e) => e.preventDefault()}
+              aria-label="Hold to go right"
+            >
+              <PxIcon name="arrow-right" />
+            </button>
+          )}
         </div>
 
         {/* Chat Bubble - positioned independently */}

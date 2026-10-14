@@ -670,6 +670,101 @@ body {
   }
 }
 
+/* Character direction buttons */
+.character-nav {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(220px, 72vw);
+  height: 48px;
+  z-index: 26;
+  pointer-events: none;
+}
+
+.character-nav-btn {
+  pointer-events: auto;
+  position: absolute;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 3px solid #8b4513;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #fff6e0 0%, #f0d9a8 100%);
+  color: #5d4037;
+  box-shadow:
+    0 3px 0 #5d4037,
+    0 5px 10px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  animation: characterNavIdle 2.4s ease-in-out infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.character-nav-left {
+  left: 0;
+}
+
+.character-nav-right {
+  right: 0;
+  animation-delay: 0.35s;
+}
+
+.character-nav-btn .px-icon {
+  font-size: 22px;
+  line-height: 1;
+  color: #5d4037;
+}
+
+.character-nav-btn:hover {
+  animation: none;
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow:
+    0 5px 0 #5d4037,
+    0 8px 14px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.character-nav-btn:active {
+  animation: none;
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 #5d4037,
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  filter: brightness(0.98);
+}
+
+@keyframes characterNavIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (max-width: 768px) {
+  .character-nav {
+    width: min(190px, 78vw);
+    bottom: 14px;
+    height: 42px;
+  }
+
+  .character-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .character-nav-btn .px-icon {
+    font-size: 20px;
+  }
+}
+
 /* Chat Bubble */
 .chat-bubble {
   position: absolute;
@@ -2815,7 +2910,7 @@ body {
 
 .submit-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0, 217, 255, 0.3);
+  box-shadow: none;
 }
 
 .submit-btn:hover::before {
@@ -3155,16 +3250,19 @@ body {
   width: 540px;
   min-width: 540px;
   max-width: 540px;
-  box-shadow: 
+  max-height: 80vh;
+  max-height: 80dvh;
+  /* Outer shadow only — never on the scrolling layer (avoids top/bottom scroll fades) */
+  box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(139, 69, 19, 0.1),
-    inset 0 2px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -2px 0 rgba(139, 69, 19, 0.1);
+    0 4px 8px rgba(139, 69, 19, 0.1);
   z-index: 10;
   line-height: 1.55;
   pointer-events: auto;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   opacity: 1;
   transform: translateY(-50%);
   animation: cardHeartbeat 3s ease-in-out infinite;
@@ -3220,10 +3318,9 @@ body {
 
 .content-card:hover {
   transform: translateY(-58%) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.2),
-    0 8px 16px rgba(139, 69, 19, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 8px 16px rgba(139, 69, 19, 0.15);
   border-color: #A0522D;
   animation-play-state: paused; /* Pause heartbeat on hover */
 }
@@ -3354,12 +3451,13 @@ body {
   transition: all 0.3s ease;
   margin-top: 8px;
   pointer-events: auto; /* Ensure submit button is clickable */
+  box-shadow: none;
 }
 
 .submit-btn:hover {
   background: linear-gradient(135deg, #A0522D, #8B4513);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 .submit-btn:active {
@@ -3398,16 +3496,16 @@ body {
 @media (max-width: 768px) and (orientation: portrait) {
   .content-card {
     padding: 15px;
-    height: 70vh;
-    max-height: 70vh;
-    overflow-y: auto;
+    height: auto;
+    max-height: 80vh;
+    max-height: 80dvh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     top: 45%; /* Adjust position slightly for better centering */
   }
   
-  /* Ensure content inside cards is scrollable */
-  .content-card > * {
+  .content-card > .card-header {
     flex-shrink: 0;
   }
   
@@ -3634,6 +3732,12 @@ body {
 .card-content {
   position: relative;
   z-index: 2;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* No box-shadow here — keeps scroll edges clean */
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -3848,7 +3952,7 @@ body {
 .quote-text {
   font-style: italic;
   color: #8B4513;
-  font-size: 0.75rem;
+  font-size: 12px !important;
   margin: 0;
   font-weight: 500;
   text-align: left;
@@ -4311,7 +4415,7 @@ body {
 /* Experience Card Styles */
 .timeline {
   position: relative;
-  padding-left: 20px;
+  padding-left: 0;
   max-height: var(--scroll-max);
   overflow-y: auto;
   padding-right: 8px;
@@ -4347,21 +4451,10 @@ body {
   background: rgba(139, 69, 19, 0.5);
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, #4CAF50, #45a049, rgba(139, 69, 19, 0.3));
-  border-radius: 1px;
-}
-
 .timeline-item {
   position: relative;
   margin-bottom: 20px;
-  padding-left: 24px;
+  padding-left: 0;
   flex-shrink: 0;
 }
 
@@ -4370,17 +4463,7 @@ body {
 }
 
 .timeline-dot {
-  position: absolute;
-  left: -7px;
-  top: 8px;
-  width: 14px;
-  height: 14px;
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-  border: 3px solid rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  animation: timelinePulse 3s ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
+  display: none;
 }
 
 /* Dynamic animation delays for unlimited timeline items */
@@ -4749,6 +4832,7 @@ a.contact-method.resume-link {
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
+  box-shadow: none;
 }
 
 .btn-icon {
@@ -4774,7 +4858,7 @@ a.contact-method.resume-link {
 .submit-btn:hover {
   background: linear-gradient(135deg, #A0522D, #8B4513);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139, 69, 19, 0.3);
+  box-shadow: none;
 }
 
 .submit-btn:hover .btn-ripple {
@@ -5098,6 +5182,39 @@ a.contact-method.resume-link {
   z-index: 1 !important;
   /* Keep iframe non-interactive */
   pointer-events: none !important;
+}
+
+.iframe-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    linear-gradient(160deg, rgba(255, 246, 224, 0.95), rgba(240, 217, 168, 0.9)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(139, 69, 19, 0.04) 0,
+      rgba(139, 69, 19, 0.04) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  color: #5d4037;
+  pointer-events: none;
+}
+
+.iframe-placeholder-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.iframe-placeholder-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .project-iframe:hover {

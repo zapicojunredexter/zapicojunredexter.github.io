@@ -3964,6 +3964,28 @@ body {
   min-width: 0;
 }
 
+.project-focus {
+  font-family: 'Press Start 2P', cursive;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.45rem;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.12), rgba(160, 82, 45, 0.08));
+  color: #8B4513;
+  border: 1px solid rgba(139, 69, 19, 0.25);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-summary {
+  margin: 0;
+  font-size: 0.65rem;
+  line-height: 1.45;
+  color: #666;
+}
+
 .project-status {
   font-family: 'Press Start 2P', cursive;
   padding: 4px 8px;
@@ -4191,6 +4213,25 @@ body {
 .skill-tag.vue { background: linear-gradient(135deg, #4FC08D, #42B883); color: white; }
 .skill-tag.angular { background: linear-gradient(135deg, #DD0031, #B50029); color: white; }
 .skill-tag.threejs { background: linear-gradient(135deg, #049EF4, #000000); color: white; }
+.skill-tag.dynamodb { background: linear-gradient(135deg, #4053D6, #2D3B9E); color: white; }
+.skill-tag.gcp { background: linear-gradient(135deg, #4285F4, #EA4335); color: white; }
+.skill-tag.jest { background: linear-gradient(135deg, #C21325, #9A1020); color: white; }
+
+.skills-intro,
+.journey-intro {
+  margin: 0 0 14px 0;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: #666;
+}
+
+.skill-focus {
+  margin: 0 0 8px 0;
+  font-size: 0.6rem;
+  color: #8B4513;
+  opacity: 0.75;
+  font-style: italic;
+}
 
 /* Backend Skills */
 .skill-tag.php { background: linear-gradient(135deg, #8993BE, #6B7BB0); color: white; }

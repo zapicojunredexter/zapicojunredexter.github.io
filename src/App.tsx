@@ -765,95 +765,91 @@ function App() {
               <div className="projects-list">
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon"><PxIcon name="building" /></span>
-                    <h4>Enterprise Web Application</h4>
-                    <div className="project-status success">Production</div>
+                    <span className="project-icon"><PxIcon name="cpu" /></span>
+                    <h4>AI Motion &amp; Posture Platform</h4>
+                    <div className="project-focus">HealthTech</div>
                   </div>
                   <div className="project-details">
+                    <p className="project-summary">
+                      Redesigned service boundaries and data flows for AI processing, then tuned Three.js rendering and asset loading for smoother client performance.
+                    </p>
                     <div className="tech-stack">
-                      <span className="tech-tag">React.js</span>
+                      <span className="tech-tag">Three.js</span>
                       <span className="tech-tag">Node.js</span>
+                      <span className="tech-tag">Python</span>
+                      <span className="tech-tag">AWS</span>
+                    </div>
+                    <div className="project-metrics">
+                      <span className="metric"><PxIcon name="building" /> Architecture redesign</span>
+                      <span className="metric"><PxIcon name="zap" /> 3D performance</span>
+                      <span className="metric"><PxIcon name="reload" /> CI/CD pipelines</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-item">
+                  <div className="project-header">
+                    <span className="project-icon"><PxIcon name="users" /></span>
+                    <h4>Wellness CRM Platform</h4>
+                    <div className="project-focus">Department Lead</div>
+                  </div>
+                  <div className="project-details">
+                    <p className="project-summary">
+                      Shaped the platform across frontend, backend, and AWS — while managing a development department through delivery with structured reviews and test coverage.
+                    </p>
+                    <div className="tech-stack">
+                      <span className="tech-tag">React</span>
+                      <span className="tech-tag">AWS</span>
+                      <span className="tech-tag">Jest</span>
+                    </div>
+                    <div className="project-metrics">
+                      <span className="metric"><PxIcon name="users" /> Department management</span>
+                      <span className="metric"><PxIcon name="building" /> End-to-end architecture</span>
+                      <span className="metric"><PxIcon name="check" /> Release quality</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-item">
+                  <div className="project-header">
+                    <span className="project-icon"><PxIcon name="heart" /></span>
+                    <h4>Medical Consultation Platform</h4>
+                    <div className="project-focus">Healthcare</div>
+                  </div>
+                  <div className="project-details">
+                    <p className="project-summary">
+                      Defined Laravel REST APIs for consultation workflows, then refactored legacy modules and MySQL queries for better performance and maintainability.
+                    </p>
+                    <div className="tech-stack">
+                      <span className="tech-tag">Laravel</span>
+                      <span className="tech-tag">PHP</span>
                       <span className="tech-tag">MySQL</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric"><PxIcon name="building" /> Scalable architecture</span>
-                      <span className="metric"><PxIcon name="zap" /> High performance</span>
+                      <span className="metric"><PxIcon name="plug" /> REST APIs</span>
+                      <span className="metric"><PxIcon name="database" /> Query optimization</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="project-item">
                   <div className="project-header">
-                    <span className="project-icon"><PxIcon name="cloud" /></span>
-                    <h4>Cloud Infrastructure System</h4>
-                    <div className="project-status success">Live</div>
+                    <span className="project-icon"><PxIcon name="layout" /></span>
+                    <h4>Real-Time Virtual Whiteboard</h4>
+                    <div className="project-focus">Collaboration</div>
                   </div>
                   <div className="project-details">
+                    <p className="project-summary">
+                      Built concurrent collaboration features and acted as technical liaison — turning client requirements into scoped milestones the team could ship.
+                    </p>
                     <div className="tech-stack">
-                      <span className="tech-tag">AWS</span>
-                      <span className="tech-tag">Firebase</span>
-                      <span className="tech-tag">Cloud Firestore</span>
-                    </div>
-                    <div className="project-metrics">
-                      <span className="metric"><PxIcon name="reload" /> CI/CD pipeline</span>
-                      <span className="metric"><PxIcon name="chart" /> Real-time data</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="project-item">
-                  <div className="project-header">
-                    <span className="project-icon"><PxIcon name="sliders" /></span>
-                    <h4>REST API Framework</h4>
-                    <div className="project-status success">Production</div>
-                  </div>
-                  <div className="project-details">
-                    <div className="tech-stack">
-                      <span className="tech-tag">Django REST</span>
-                      <span className="tech-tag">Express.js</span>
-                      <span className="tech-tag">Spring Framework</span>
-                    </div>
-                    <div className="project-metrics">
-                      <span className="metric"><PxIcon name="plug" /> RESTful APIs</span>
-                      <span className="metric"><PxIcon name="zap" /> Optimized performance</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="project-item">
-                  <div className="project-header">
-                    <span className="project-icon"><PxIcon name="smartphone" /></span>
-                    <h4>Cross-Platform Mobile App</h4>
-                    <div className="project-status success">Live</div>
-                  </div>
-                  <div className="project-details">
-                    <div className="tech-stack">
-                      <span className="tech-tag">React Native</span>
-                      <span className="tech-tag">TypeScript</span>
-                      <span className="tech-tag">Firebase</span>
-                    </div>
-                    <div className="project-metrics">
-                      <span className="metric"><PxIcon name="smartphone" /> Cross-platform</span>
-                      <span className="metric"><PxIcon name="zap" /> Native performance</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="project-item">
-                  <div className="project-header">
-                    <span className="project-icon"><PxIcon name="globe" /></span>
-                    <h4>Full-Stack Web Platform</h4>
-                    <div className="project-status beta">Development</div>
-                  </div>
-                  <div className="project-details">
-                    <div className="tech-stack">
-                      <span className="tech-tag">Vue.js</span>
-                      <span className="tech-tag">PHP</span>
                       <span className="tech-tag">Laravel</span>
+                      <span className="tech-tag">MySQL</span>
+                      <span className="tech-tag">Real-time</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric"><PxIcon name="sliders" /> Full-stack solution</span>
-                      <span className="metric"><PxIcon name="zap" /> Modern framework</span>
+                      <span className="metric"><PxIcon name="reload" /> Concurrent sessions</span>
+                      <span className="metric"><PxIcon name="contact" /> Client liaison</span>
                     </div>
                   </div>
                 </div>
@@ -1424,20 +1420,20 @@ function App() {
               <h3>Technical Arsenal</h3>
             </div>
             <div className="card-content">
+              <p className="skills-intro">
+              </p>
               <div className="skills-categories">
                 <div className="skill-category">
                   <div className="category-header">
                     <span className="category-icon"><PxIcon name="briefcase" /></span>
-                    <h4>Leadership & Management</h4>
+                    <h4>Leadership & Delivery</h4>
                   </div>
+                  <p className="skill-focus">How I run engineering work</p>
                   <div className="skill-tags">
-                    <span className="skill-tag management">
-                      Solution Management
-                    </span>
-                    <span className="skill-tag architecture">
-                      System Architecture
-                    </span>
+                    <span className="skill-tag architecture">System Architecture</span>
+                    <span className="skill-tag management">Team Leadership</span>
                     <span className="skill-tag cicd">CI/CD</span>
+                    <span className="skill-tag management">Code Review</span>
                   </div>
                 </div>
 
@@ -1446,12 +1442,12 @@ function App() {
                     <span className="category-icon"><PxIcon name="brush" /></span>
                     <h4>Frontend</h4>
                   </div>
+                  <p className="skill-focus">Product UI & interactive experiences</p>
                   <div className="skill-tags">
                     <span className="skill-tag react">React.js</span>
                     <span className="skill-tag reactnative">React Native</span>
-                    <span className="skill-tag vue">Vue.js</span>
-                    <span className="skill-tag angular">AngularJS</span>
                     <span className="skill-tag ts">TypeScript</span>
+                    <span className="skill-tag vue">Vue.js</span>
                     <span className="skill-tag threejs">Three.js</span>
                   </div>
                 </div>
@@ -1459,49 +1455,50 @@ function App() {
                 <div className="skill-category">
                   <div className="category-header">
                     <span className="category-icon"><PxIcon name="gear" /></span>
-                    <h4>Backend</h4>
+                    <h4>Backend & APIs</h4>
                   </div>
+                  <p className="skill-focus">Services, integrations, and data contracts</p>
                   <div className="skill-tags">
                     <span className="skill-tag node">Node.js</span>
-                    <span className="skill-tag php">PHP</span>
                     <span className="skill-tag laravel">Laravel</span>
-                    <span className="skill-tag django">Django REST</span>
-                    <span className="skill-tag express">Express.js</span>
-                    <span className="skill-tag spring">Spring Framework</span>
-                    <span className="skill-tag java">Java</span>
+                    <span className="skill-tag php">PHP</span>
+                    <span className="skill-tag python">Python</span>
+                    <span className="skill-tag express">REST APIs</span>
                   </div>
                 </div>
 
                 <div className="skill-category">
                   <div className="category-header">
                     <span className="category-icon"><PxIcon name="cloud" /></span>
-                    <h4>Cloud & DevOps</h4>
+                    <h4>Cloud & Data</h4>
                   </div>
+                  <p className="skill-focus">Infrastructure and persistence</p>
                   <div className="skill-tags">
                     <span className="skill-tag aws">AWS</span>
                     <span className="skill-tag firebase">Firebase</span>
-                    <span className="skill-tag firestore">Cloud Firestore</span>
-                    <span className="skill-tag git">Git</span>
+                    <span className="skill-tag firestore">Firestore</span>
+                    <span className="skill-tag dynamodb">DynamoDB</span>
+                    <span className="skill-tag mysql">MySQL</span>
+                    <span className="skill-tag gcp">GCP</span>
                   </div>
                 </div>
 
                 <div className="skill-category">
                   <div className="category-header">
-                    <span className="category-icon"><PxIcon name="database" /></span>
-                    <h4>Database & Tools</h4>
+                    <span className="category-icon"><PxIcon name="git-branch" /></span>
+                    <h4>Engineering Practice</h4>
                   </div>
+                  <p className="skill-focus">Quality and collaboration habits</p>
                   <div className="skill-tags">
-                    <span className="skill-tag mysql">MySQL</span>
-                    <span className="skill-tag sql">SQL</span>
-                    <span className="skill-tag scripts">
-                      Google Apps Script
-                    </span>
+                    <span className="skill-tag git">Git</span>
+                    <span className="skill-tag jest">Jest</span>
+                    <span className="skill-tag cicd">Automated Deployments</span>
                   </div>
                 </div>
               </div>
               <div className="expanding-note">
-                <span className="growth-icon"><PxIcon name="chart-line" /></span>
-                <p>Always expanding this toolkit!</p>
+                <span className="growth-icon"><PxIcon name="target" /></span>
+                <p>A strategic problem-solver who prioritizes deep tool mastery and purposeful technology selection.</p>
               </div>
             </div>
           </div>
@@ -1513,6 +1510,8 @@ function App() {
               <h3>Professional Journey</h3>
             </div>
             <div className="card-content">
+              <p className="journey-intro">
+              </p>
               <div className="timeline">
                 <div className="timeline-item current">
                   <div className="timeline-dot"></div>
@@ -1520,17 +1519,17 @@ function App() {
                     <div className="job-header">
                       <h4>Software Development Manager</h4>
                       <span className="company">@ Vananaz Technologies</span>
-                      <span className="duration">Present</span>
+                      <span className="duration">Mar 2023 – Present</span>
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="building" /> System architecture & solution management
+                        <PxIcon name="building" /> Own architecture and cloud planning across production platforms
                       </div>
                       <div className="achievement">
-                        <PxIcon name="reload" /> CI/CD implementation & optimization
+                        <PxIcon name="reload" /> Establish CI/CD, branching strategy, and release standards
                       </div>
                       <div className="achievement">
-                        <PxIcon name="users" /> Leading development teams
+                        <PxIcon name="users" /> Manage a development department through design and delivery
                       </div>
                     </div>
                   </div>
@@ -1542,17 +1541,17 @@ function App() {
                     <div className="job-header">
                       <h4>Development Lead Supervisor</h4>
                       <span className="company">@ Vananaz Technologies</span>
-                      <span className="duration">Previous Role</span>
+                      <span className="duration">Oct 2021 – Mar 2023</span>
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="cloud" /> AWS & cloud infrastructure
+                        <PxIcon name="cloud" /> Guide AWS delivery and scalable architecture standards
                       </div>
                       <div className="achievement">
-                        <PxIcon name="teach" /> Technical leadership & mentoring
+                        <PxIcon name="teach" /> Align engineering decisions across concurrent client work
                       </div>
                       <div className="achievement">
-                        <PxIcon name="chart" /> Project oversight & delivery
+                        <PxIcon name="chart" /> Keep scope, quality, and timelines in the same conversation
                       </div>
                     </div>
                   </div>
@@ -1564,17 +1563,17 @@ function App() {
                     <div className="job-header">
                       <h4>Senior Development Leader</h4>
                       <span className="company">@ Vananaz Technologies</span>
-                      <span className="duration">Previous Role</span>
+                      <span className="duration">Dec 2019 – Oct 2021</span>
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="globe" /> Full-stack development (PHP, Laravel)
+                        <PxIcon name="globe" /> Lead full-stack delivery across React, Laravel, Node, and Firebase
                       </div>
                       <div className="achievement">
-                        <PxIcon name="database" /> Database design & optimization (MySQL)
+                        <PxIcon name="database" /> Design APIs and MySQL schemas with maintainability in mind
                       </div>
                       <div className="achievement">
-                        <PxIcon name="plug" /> REST API development & integration
+                        <PxIcon name="teach" /> Mentor developers through architecture and code reviews
                       </div>
                     </div>
                   </div>
@@ -1586,17 +1585,17 @@ function App() {
                     <div className="job-header">
                       <h4>Software Engineer</h4>
                       <span className="company">@ Vananaz Technologies</span>
-                      <span className="duration">Started Career</span>
+                      <span className="duration">Apr 2018 – Dec 2019</span>
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="smartphone" /> Mobile app development (React Native)
+                        <PxIcon name="smartphone" /> Build web and mobile apps with React and React Native
                       </div>
                       <div className="achievement">
-                        <PxIcon name="git-branch" /> Version control & collaboration (Git)
+                        <PxIcon name="plug" /> Contribute to APIs, workflow automation, and CI-backed testing
                       </div>
                       <div className="achievement">
-                        <PxIcon name="script" /> Google Apps Script automation
+                        <PxIcon name="git-branch" /> Establish solid collaboration habits early — Git, reviews, delivery
                       </div>
                     </div>
                   </div>

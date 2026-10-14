@@ -56,25 +56,16 @@ function App() {
   const [hasWelcomeJumped, setHasWelcomeJumped] = useState<boolean>(false);
 
   const chatMessages = useMemo(() => [
-    "Hey there! I'm Junre, welcome to my interactive portfolio!",
-    "Scroll around to explore different sections and discover my journey!",
-    "I love building scalable systems and leading amazing teams!",
-    "Born and raised in beautiful Cebu City, Philippines!",
-    "From BSIT student at University of Cebu to CTO - what a journey!",
-    "Currently CTO at Vananaz Technologies Inc. - living the dream!",
-    "June 17, 1997 - that's when the adventure began!",
-    "Cebu City shaped me, but technology gave me wings!",
-    "University of Cebu taught me the basics, experience taught me everything else!",
-    "From island life in Cebu to leading tech teams - the journey continues!",
-    "CTO by day, lifelong learner by night! Never stop growing!",
-    "Building the future, one line of code at a time!",
-    "Proud Cebuano techie making waves in the digital world!",
-    "Leadership isn't about being in charge, it's about taking care of those in your charge!",
-    "Every bug is a lesson, every feature is an opportunity!",
-    "From junior developer to CTO - proof that persistence pays off!",
-    "Technology changes, but passion for innovation remains constant!",
-    "Cebu City will always be home, but the cloud is my office!",
-    "Click me to see more of my thoughts!",
+    "Hey — I'm Junre. Thanks for stopping by.",
+    "Scroll to move through the sections. Click me for another note.",
+    "I manage software development at Vananaz Technologies.",
+    "I grew up in Cebu City, Philippines.",
+    "Started in BSIT at University of Cebu, then went into industry.",
+    "These days I focus on architecture, delivery, and keeping systems usable.",
+    "I still get involved when something is slow or hard to maintain.",
+    "Most of my work has been web, mobile, APIs, and cloud.",
+    "Happy to talk about projects, roles, or just swap notes.",
+    "Click me if you want another line.",
   ], []);
   const [pausedElements, setPausedElements] = useState<Set<string>>(new Set());
 
@@ -201,7 +192,7 @@ function App() {
 
     // Simple success message for now
     alert(
-      `Thanks ${name}! Your message about "${subject}" has been received. I'll get back to you at ${email} soon!`
+      `Thanks, ${name}. Got your message — I'll reply at ${email}.`
     );
 
     // Reset form
@@ -209,9 +200,9 @@ function App() {
   };
 
   const textsToType = useMemo(() => [
-    "Building scalable systems and guiding technical teams",
-    "Software Development Manager with extensive experience in system architecture and solution management.",
-    "I view myself as a work in progress at all times. My main objective is to never stop learning.",
+    "Software Development Manager at Vananaz Technologies",
+    "Architecture, delivery, and practical engineering problems",
+    "Based in Cebu — open to interesting conversations",
   ], []);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -514,22 +505,22 @@ function App() {
               <div className="loading-subtitle">
                 {loadingProgress < 30 && (
                   <>
-                    <PxIcon name="human" className="loading-status-icon" /> Character running to adventure...
+                    <PxIcon name="human" className="loading-status-icon" /> Loading character...
                   </>
                 )}
                 {loadingProgress >= 30 && loadingProgress < 60 && (
                   <>
-                    <PxIcon name="leaf" className="loading-status-icon" /> Growing the forest...
+                    <PxIcon name="leaf" className="loading-status-icon" /> Loading background...
                   </>
                 )}
                 {loadingProgress >= 60 && loadingProgress < 85 && (
                   <>
-                    <PxIcon name="tree-pine" className="loading-status-icon" /> Adding the trees...
+                    <PxIcon name="tree-pine" className="loading-status-icon" /> Almost there...
                   </>
                 )}
                 {loadingProgress >= 85 && (
                   <>
-                    <PxIcon name="check" className="loading-status-icon" /> Adventure ready!
+                    <PxIcon name="check" className="loading-status-icon" /> Ready
                   </>
                 )}
               </div>
@@ -547,7 +538,7 @@ function App() {
               
               {loadingProgress === 100 && (
                 <div className="loading-complete">
-                  <div className="press-any-key"><PxIcon name="sparkles" /> Adventure Ready! <PxIcon name="sparkles" /></div>
+                  <div className="press-any-key"><PxIcon name="sparkles" /> Ready to scroll</div>
                 </div>
               )}
             </div>
@@ -670,35 +661,35 @@ function App() {
           <div className="content-card welcome-card">
             <div className="card-header">
               <div className="card-icon"><PxIcon name="star" /></div>
-              <h3>Welcome to My Digital Forest</h3>
+              <h3>Welcome</h3>
             </div>
             <div className="card-content">
               <div className="instruction-list">
                 <div className="instruction-item">
                   <span className="instruction-icon"><PxIcon name="gamepad" /></span>
                   <div>
-                    <strong>Scroll to explore</strong>
-                    <p>Navigate through my interactive portfolio</p>
+                    <strong>Scroll to move</strong>
+                    <p>The scene moves as you go through the cards</p>
                   </div>
                 </div>
                 <div className="instruction-item">
                   <span className="instruction-icon"><PxIcon name="book-open" /></span>
                   <div>
-                    <strong>Discover my story</strong>
-                    <p>Each card reveals different aspects of my journey</p>
+                    <strong>Read the cards</strong>
+                    <p>About me, work, skills, and how to reach me</p>
                   </div>
                 </div>
                 <div className="instruction-item">
                   <span className="instruction-icon"><PxIcon name="lightbulb" /></span>
                   <div>
-                    <strong>See my passion</strong>
-                    <p>Skills, projects, and innovation in action</p>
+                    <strong>Open the demos</strong>
+                    <p>Some projects have live previews you can click</p>
                   </div>
                 </div>
               </div>
               <div className="adventure-banner">
                 <span className="adventure-text">
-                  <PxIcon name="flag" /> Ready for the adventure?
+                  <PxIcon name="flag" /> Scroll to start
                 </span>
               </div>
             </div>
@@ -720,37 +711,36 @@ function App() {
                   <span className="quality-icon"><PxIcon name="building" /></span>
                   <div>
                     <strong>System Architecture</strong>
-                    <p>Designing scalable software solutions</p>
+                    <p>How services, data, and deployments fit together</p>
                   </div>
                 </div>
                 <div className="quality-item">
-                  <span className="quality-icon"><PxIcon name="gear" /></span>
+                  <span className="quality-icon"><PxIcon name="zap" /></span>
                   <div>
-                    <strong>Solution Management</strong>
-                    <p>End-to-end software solution oversight</p>
+                    <strong>Performance</strong>
+                    <p>Improving systems that are slow or unstable</p>
                   </div>
                 </div>
                 <div className="quality-item">
-                  <span className="quality-icon"><PxIcon name="reload" /></span>
+                  <span className="quality-icon"><PxIcon name="notes" /></span>
                   <div>
-                    <strong>CI/CD Expert</strong>
-                    <p>Continuous integration & delivery practices</p>
+                    <strong>Technical Specs</strong>
+                    <p>Helping define what should be built and why</p>
                   </div>
                 </div>
                 <div className="quality-item">
                   <span className="quality-icon"><PxIcon name="users" /></span>
                   <div>
-                    <strong>Team Leadership</strong>
-                    <p>From Software Engineer to Development Manager</p>
+                    <strong>Department Leadership</strong>
+                    <p>Managing people and delivery day to day</p>
                   </div>
                 </div>
               </div>
               <div className="quote-section">
-                <div className="quote-mark">"</div>
                 <p className="quote-text">
-                  Never stop learning - always work in progress
+                  &ldquo;Around here, however, we don't look backwards for very long. We keep moving forward, opening new doors, and doing new things, because we're curious&hellip; and curiosity keeps leading us down new paths.&rdquo;
                 </p>
-                <div className="quote-mark">"</div>
+                <p className="quote-attribution">— Meet the Robinsons</p>
               </div>
             </div>
           </div>
@@ -771,7 +761,7 @@ function App() {
                   </div>
                   <div className="project-details">
                     <p className="project-summary">
-                      Redesigned service boundaries and data flows for AI processing, then tuned Three.js rendering and asset loading for smoother client performance.
+                      Worked on architecture for AI processing, and fixed parts of the product that were slow in normal use.
                     </p>
                     <div className="tech-stack">
                       <span className="tech-tag">Three.js</span>
@@ -780,9 +770,9 @@ function App() {
                       <span className="tech-tag">AWS</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric"><PxIcon name="building" /> Architecture redesign</span>
-                      <span className="metric"><PxIcon name="zap" /> 3D performance</span>
-                      <span className="metric"><PxIcon name="reload" /> CI/CD pipelines</span>
+                      <span className="metric"><PxIcon name="building" /> Architecture</span>
+                      <span className="metric"><PxIcon name="zap" /> Performance</span>
+                      <span className="metric"><PxIcon name="reload" /> CI/CD</span>
                     </div>
                   </div>
                 </div>
@@ -795,7 +785,7 @@ function App() {
                   </div>
                   <div className="project-details">
                     <p className="project-summary">
-                      Shaped the platform across frontend, backend, and AWS — while managing a development department through delivery with structured reviews and test coverage.
+                      Handled frontend, backend, and AWS work on the platform while managing the development department through delivery.
                     </p>
                     <div className="tech-stack">
                       <span className="tech-tag">React</span>
@@ -804,8 +794,8 @@ function App() {
                     </div>
                     <div className="project-metrics">
                       <span className="metric"><PxIcon name="users" /> Department management</span>
-                      <span className="metric"><PxIcon name="building" /> End-to-end architecture</span>
-                      <span className="metric"><PxIcon name="check" /> Release quality</span>
+                      <span className="metric"><PxIcon name="building" /> Full stack</span>
+                      <span className="metric"><PxIcon name="check" /> Reviews &amp; tests</span>
                     </div>
                   </div>
                 </div>
@@ -818,7 +808,7 @@ function App() {
                   </div>
                   <div className="project-details">
                     <p className="project-summary">
-                      Defined Laravel REST APIs for consultation workflows, then refactored legacy modules and MySQL queries for better performance and maintainability.
+                      Built Laravel APIs for consultation workflows and cleaned up older code that had gotten slow.
                     </p>
                     <div className="tech-stack">
                       <span className="tech-tag">Laravel</span>
@@ -827,7 +817,7 @@ function App() {
                     </div>
                     <div className="project-metrics">
                       <span className="metric"><PxIcon name="plug" /> REST APIs</span>
-                      <span className="metric"><PxIcon name="database" /> Query optimization</span>
+                      <span className="metric"><PxIcon name="zap" /> Performance fixes</span>
                     </div>
                   </div>
                 </div>
@@ -840,7 +830,7 @@ function App() {
                   </div>
                   <div className="project-details">
                     <p className="project-summary">
-                      Built concurrent collaboration features and acted as technical liaison — turning client requirements into scoped milestones the team could ship.
+                      Built real-time collaboration features and helped translate client requests into concrete engineering tasks.
                     </p>
                     <div className="tech-stack">
                       <span className="tech-tag">Laravel</span>
@@ -848,8 +838,8 @@ function App() {
                       <span className="tech-tag">Real-time</span>
                     </div>
                     <div className="project-metrics">
-                      <span className="metric"><PxIcon name="reload" /> Concurrent sessions</span>
-                      <span className="metric"><PxIcon name="contact" /> Client liaison</span>
+                      <span className="metric"><PxIcon name="reload" /> Real-time sync</span>
+                      <span className="metric"><PxIcon name="contact" /> Client coordination</span>
                     </div>
                   </div>
                 </div>
@@ -886,7 +876,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Interactive 3D geospatial explorer with first-person movement, mouse look, and immersive map navigation</p>
+                      <p>3D map explorer with keyboard movement and mouse look</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="earth" /> 3D Terrain</span>
@@ -941,7 +931,7 @@ function App() {
                       <span className="tech-badge">SVG</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Interactive hiragana and katakana tutor with quizzes, typing practice, and stroke-order handwriting recognition</p>
+                      <p>Hiragana and katakana practice with quizzes and a handwriting mode</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="pencil" /> Write Mode</span>
@@ -996,23 +986,23 @@ function App() {
                       <span className="tech-badge">CSS3</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Mario-style interactive portfolio with parallax scrolling and animated character</p>
+                      <p>Gamified portfolio with parallax scrolling and a walkable character</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature"><PxIcon name="gamepad" /> Game-Style UI</span>
+                      <span className="feature"><PxIcon name="gamepad" /> Gamified UI</span>
                       <span className="feature"><PxIcon name="tree-pine" /> Parallax Background</span>
                       <span className="feature"><PxIcon name="user" /> Animated Character</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Current Portfolio</span>
-                        <span className="preview-link"><PxIcon name="gamepad" /> You're viewing it now!</span>
+                        <span className="preview-link"><PxIcon name="gamepad" /> You're on it now</span>
                       </div>
                       <div className="portfolio-preview">
                         <div className="preview-placeholder">
                           <span className="preview-icon-large"><PxIcon name="gamepad" /></span>
-                          <p>Mario-style Interactive Portfolio</p>
-                          <span className="preview-subtitle">Scroll to explore!</span>
+                          <p>This site</p>
+                          <span className="preview-subtitle">Keep scrolling for more</span>
                         </div>
                       </div>
                     </div>
@@ -1040,7 +1030,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Comprehensive sales analytics dashboard with revenue tracking, product performance, and regional distribution insights</p>
+                      <p>Sales dashboard for revenue, products, and regional breakdowns</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="chart-line" /> Revenue Analytics</span>
@@ -1095,7 +1085,7 @@ function App() {
                       <span className="tech-badge">Responsive</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Professional photography studio website with booking system and portfolio showcase</p>
+                      <p>Photography studio site with booking and portfolio pages</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="smartphone" /> Mobile-First Design</span>
@@ -1150,7 +1140,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Interactive Pokemon database with search functionality and detailed Pokemon information</p>
+                      <p>Simple Pokemon lookup with search</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="search" /> Search Functionality</span>
@@ -1205,7 +1195,7 @@ function App() {
                       <span className="tech-badge">Responsive</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Luxury beach house rental website with golden hour theme and booking system</p>
+                      <p>Beach house rental site with booking pages</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="sun" /> Golden Hour Theme</span>
@@ -1260,7 +1250,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Exquisite French pastries and artisanal cakes with online ordering and holiday collections</p>
+                      <p>Bakery site with menu and ordering pages</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="cake" /> Custom Cakes</span>
@@ -1315,7 +1305,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Complete technology solutions company website with hardware and software services</p>
+                      <p>Company site for hardware and software services</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="sliders" /> Service Showcase</span>
@@ -1370,7 +1360,7 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Professional civil engineering portfolio showcasing infrastructure projects and technical expertise</p>
+                      <p>Civil engineering portfolio site</p>
                     </div>
                     <div className="project-features">
                       <span className="feature"><PxIcon name="building" /> Project Showcase</span>
@@ -1406,7 +1396,7 @@ function App() {
               </div>
               <div className="innovation-footer">
                 <span className="future-icon"><PxIcon name="sparkle" /></span>
-                <p>Showcasing real projects with innovative design</p>
+                <p>Personal and client-facing projects with live demos</p>
               </div>
             </div>
           </div>
@@ -1420,18 +1410,17 @@ function App() {
               <h3>Technical Arsenal</h3>
             </div>
             <div className="card-content">
-              <p className="skills-intro">
-              </p>
               <div className="skills-categories">
                 <div className="skill-category">
                   <div className="category-header">
                     <span className="category-icon"><PxIcon name="briefcase" /></span>
                     <h4>Leadership & Delivery</h4>
                   </div>
-                  <p className="skill-focus">How I run engineering work</p>
+                  <p className="skill-focus">Day-to-day management work</p>
                   <div className="skill-tags">
                     <span className="skill-tag architecture">System Architecture</span>
-                    <span className="skill-tag management">Team Leadership</span>
+                    <span className="skill-tag management">Department Leadership</span>
+                    <span className="skill-tag architecture">Technical Specs</span>
                     <span className="skill-tag cicd">CI/CD</span>
                     <span className="skill-tag management">Code Review</span>
                   </div>
@@ -1442,7 +1431,7 @@ function App() {
                     <span className="category-icon"><PxIcon name="brush" /></span>
                     <h4>Frontend</h4>
                   </div>
-                  <p className="skill-focus">Product UI & interactive experiences</p>
+                  <p className="skill-focus">UI and client apps</p>
                   <div className="skill-tags">
                     <span className="skill-tag react">React.js</span>
                     <span className="skill-tag reactnative">React Native</span>
@@ -1457,7 +1446,7 @@ function App() {
                     <span className="category-icon"><PxIcon name="gear" /></span>
                     <h4>Backend & APIs</h4>
                   </div>
-                  <p className="skill-focus">Services, integrations, and data contracts</p>
+                  <p className="skill-focus">Server-side work</p>
                   <div className="skill-tags">
                     <span className="skill-tag node">Node.js</span>
                     <span className="skill-tag laravel">Laravel</span>
@@ -1472,7 +1461,7 @@ function App() {
                     <span className="category-icon"><PxIcon name="cloud" /></span>
                     <h4>Cloud & Data</h4>
                   </div>
-                  <p className="skill-focus">Infrastructure and persistence</p>
+                  <p className="skill-focus">Hosting and storage</p>
                   <div className="skill-tags">
                     <span className="skill-tag aws">AWS</span>
                     <span className="skill-tag firebase">Firebase</span>
@@ -1488,17 +1477,19 @@ function App() {
                     <span className="category-icon"><PxIcon name="git-branch" /></span>
                     <h4>Engineering Practice</h4>
                   </div>
-                  <p className="skill-focus">Quality and collaboration habits</p>
+                  <p className="skill-focus">How work gets done</p>
                   <div className="skill-tags">
                     <span className="skill-tag git">Git</span>
                     <span className="skill-tag jest">Jest</span>
                     <span className="skill-tag cicd">Automated Deployments</span>
+                    <span className="skill-tag architecture">Performance Tuning</span>
+                    <span className="skill-tag management">Reliability</span>
                   </div>
                 </div>
               </div>
               <div className="expanding-note">
                 <span className="growth-icon"><PxIcon name="target" /></span>
-                <p>A strategic problem-solver who prioritizes deep tool mastery and purposeful technology selection.</p>
+                <p>I pick tools based on the problem, not the trend.</p>
               </div>
             </div>
           </div>
@@ -1510,8 +1501,6 @@ function App() {
               <h3>Professional Journey</h3>
             </div>
             <div className="card-content">
-              <p className="journey-intro">
-              </p>
               <div className="timeline">
                 <div className="timeline-item current">
                   <div className="timeline-dot"></div>
@@ -1523,13 +1512,16 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="building" /> Own architecture and cloud planning across production platforms
+                        <PxIcon name="building" /> Plan architecture and cloud setup for production systems
                       </div>
                       <div className="achievement">
-                        <PxIcon name="reload" /> Establish CI/CD, branching strategy, and release standards
+                        <PxIcon name="notes" /> Give technical input when specs are being written
                       </div>
                       <div className="achievement">
-                        <PxIcon name="users" /> Manage a development department through design and delivery
+                        <PxIcon name="zap" /> Work on speed, stability, and maintainability issues
+                      </div>
+                      <div className="achievement">
+                        <PxIcon name="users" /> Manage the development department
                       </div>
                     </div>
                   </div>
@@ -1545,13 +1537,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="cloud" /> Guide AWS delivery and scalable architecture standards
+                        <PxIcon name="cloud" /> Supported AWS delivery and architecture decisions
                       </div>
                       <div className="achievement">
-                        <PxIcon name="teach" /> Align engineering decisions across concurrent client work
+                        <PxIcon name="notes" /> Helped turn product requests into technical plans
                       </div>
                       <div className="achievement">
-                        <PxIcon name="chart" /> Keep scope, quality, and timelines in the same conversation
+                        <PxIcon name="chart" /> Balanced scope, quality, and deadlines across projects
                       </div>
                     </div>
                   </div>
@@ -1567,13 +1559,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="globe" /> Lead full-stack delivery across React, Laravel, Node, and Firebase
+                        <PxIcon name="globe" /> Built features across React, Laravel, Node, and Firebase
                       </div>
                       <div className="achievement">
-                        <PxIcon name="database" /> Design APIs and MySQL schemas with maintainability in mind
+                        <PxIcon name="zap" /> Fixed slow parts of existing systems when needed
                       </div>
                       <div className="achievement">
-                        <PxIcon name="teach" /> Mentor developers through architecture and code reviews
+                        <PxIcon name="teach" /> Reviewed code and mentored other developers
                       </div>
                     </div>
                   </div>
@@ -1589,13 +1581,13 @@ function App() {
                     </div>
                     <div className="achievements">
                       <div className="achievement">
-                        <PxIcon name="smartphone" /> Build web and mobile apps with React and React Native
+                        <PxIcon name="smartphone" /> Built web and mobile apps with React and React Native
                       </div>
                       <div className="achievement">
-                        <PxIcon name="plug" /> Contribute to APIs, workflow automation, and CI-backed testing
+                        <PxIcon name="plug" /> Worked on APIs, automation, and basic CI testing
                       </div>
                       <div className="achievement">
-                        <PxIcon name="git-branch" /> Establish solid collaboration habits early — Git, reviews, delivery
+                        <PxIcon name="git-branch" /> Used Git and reviews as part of normal team work
                       </div>
                     </div>
                   </div>
@@ -1608,12 +1600,12 @@ function App() {
           <div className="content-card final-contact-card">
             <div className="card-header">
               <div className="card-icon wave"><PxIcon name="send" /></div>
-              <h3>Let's Connect!</h3>
+              <h3>Contact</h3>
             </div>
             <div className="card-content">
               <div className="contact-intro">
-                <h4>Ready to collaborate?</h4>
-                <p>Let's build something amazing together!</p>
+                <h4>Want to talk?</h4>
+                <p>Email, LinkedIn, GitHub, or the form below.</p>
               </div>
               <div className="contact-methods-grid">
                 <div className="contact-method" onClick={() => handleContactCopy('zapicojunredexter@gmail.com', 'Email')}>
@@ -1677,10 +1669,7 @@ function App() {
             </div>
             <div className="card-content">
               <div className="form-intro">
-                <p>
-                  Have a project in mind? Let's discuss how we can work
-                  together!
-                </p>
+                <p>Send a short note and I’ll reply when I can.</p>
               </div>
               <form className="contact-form" onSubmit={handleContactSubmit}>
                 <div className="form-row">

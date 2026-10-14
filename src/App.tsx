@@ -108,7 +108,7 @@ function App() {
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
-  const [scrollEventCounter, setScrollEventCounter] = useState<number>(0);
+  const scrollEventCounterRef = useRef(0);
   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
 
@@ -496,27 +496,22 @@ function App() {
       }
 
       // Increment scroll counter and update frame
-      setScrollEventCounter((prev) => {
-        const newCounter = prev + 1;
-
-        // Only change frame every 8 scroll events (adjust this number to make walking faster/slower)
-        if (newCounter % 8 === 0) {
-          setCurrentPersonFrame((currentFrame) => {
-            if (currentFrame === 1) return 2; // Start walking from frame 2
-            if (currentFrame >= 6) return 2; // Reset to frame 2 after frame 6
-            return currentFrame + 1;
-          });
-        }
-
-        return newCounter;
-      });
+      scrollEventCounterRef.current += 1;
+      // Only change frame every 8 scroll events (adjust this number to make walking faster/slower)
+      if (scrollEventCounterRef.current % 8 === 0) {
+        setCurrentPersonFrame((currentFrame) => {
+          if (currentFrame === 1) return 2; // Start walking from frame 2
+          if (currentFrame >= 6) return 2; // Reset to frame 2 after frame 6
+          return currentFrame + 1;
+        });
+      }
 
       // Set timeout to stop walking animation
       const newTimeout = setTimeout(() => {
         isScrollGestureRef.current = false;
         setIsScrolling(false);
         setCurrentPersonFrame(1); // Reset to idle frame
-        setScrollEventCounter(0); // Reset counter when stopping
+        scrollEventCounterRef.current = 0; // Reset counter when stopping
 
         // Show chat bubble when character becomes idle (message already prepared)
         setTimeout(() => {

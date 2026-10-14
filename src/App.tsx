@@ -187,12 +187,10 @@ function App() {
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject");
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const message = formData.get("message");
 
     // Simple success message for now
     alert(
-      `Thanks, ${name}. Got your message — I'll reply at ${email}.`
+      `Thanks, ${name}. Got your message about "${subject}" — I'll reply at ${email}.`
     );
 
     // Reset form

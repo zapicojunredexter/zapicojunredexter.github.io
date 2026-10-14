@@ -871,6 +871,215 @@ function App() {
               <div className="innovation-grid">
                 <div className="innovation-item">
                   <div className="innovation-header">
+                    <span className="innovation-icon"><PxIcon name="map" /></span>
+                    <h4>GeoScape Explorer</h4>
+                  </div>
+                  <div className="innovation-details">
+                    <div className="project-preview">
+                      <div className="preview-image">
+                        <span className="preview-icon"><PxIcon name="map" /></span>
+                      </div>
+                      <div className="preview-info">
+                        <span className="project-type">3D Geospatial Explorer</span>
+                        <span className="project-url">zapicojunredexter.github.io/3d-map</span>
+                      </div>
+                    </div>
+                    <div className="innovation-tech">
+                      <span className="tech-badge">Three.js</span>
+                      <span className="tech-badge">WebGL</span>
+                      <span className="tech-badge">JavaScript</span>
+                    </div>
+                    <div className="innovation-description">
+                      <p>Interactive 3D geospatial explorer with first-person movement, mouse look, and immersive map navigation</p>
+                    </div>
+                    <div className="project-features">
+                      <span className="feature"><PxIcon name="earth" /> 3D Terrain</span>
+                      <span className="feature"><PxIcon name="keyboard" /> WASD Controls</span>
+                      <span className="feature"><PxIcon name="mouse" /> Mouse Look</span>
+                    </div>
+                    <div className="project-preview-frame">
+                      <div className="preview-header">
+                        <span className="preview-label">Live Preview</span>
+                        <a href="https://zapicojunredexter.github.io/3d-map/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                          <PxIcon name="external-link" /> Open Full Site
+                        </a>
+                      </div>
+                      <div className="iframe-wrapper">
+                        <iframe 
+                          src="https://zapicojunredexter.github.io/3d-map/"
+                          title="GeoScape Explorer Preview"
+                          className="project-iframe"
+                          loading="lazy"
+                          style={{
+                            width: '1280px',
+                            height: '800px'
+                          }}
+                        />
+                        <div 
+                          className="iframe-overlay" 
+                          onClick={() => window.open('https://zapicojunredexter.github.io/3d-map/', '_blank')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="innovation-item">
+                  <div className="innovation-header">
+                    <span className="innovation-icon"><PxIcon name="teach" /></span>
+                    <h4>Kana Practice</h4>
+                  </div>
+                  <div className="innovation-details">
+                    <div className="project-preview">
+                      <div className="preview-image">
+                        <span className="preview-icon"><PxIcon name="teach" /></span>
+                      </div>
+                      <div className="preview-info">
+                        <span className="project-type">Japanese Learning App</span>
+                        <span className="project-url">zapicojunredexter.github.io/jp-tutor</span>
+                      </div>
+                    </div>
+                    <div className="innovation-tech">
+                      <span className="tech-badge">React</span>
+                      <span className="tech-badge">Vite</span>
+                      <span className="tech-badge">SVG</span>
+                    </div>
+                    <div className="innovation-description">
+                      <p>Interactive hiragana and katakana tutor with quizzes, typing practice, and stroke-order handwriting recognition</p>
+                    </div>
+                    <div className="project-features">
+                      <span className="feature"><PxIcon name="pencil" /> Write Mode</span>
+                      <span className="feature"><PxIcon name="gamepad" /> Quiz Modes</span>
+                      <span className="feature"><PxIcon name="volume" /> Pronunciation</span>
+                    </div>
+                    <div className="project-preview-frame">
+                      <div className="preview-header">
+                        <span className="preview-label">Live Preview</span>
+                        <a href="https://zapicojunredexter.github.io/jp-tutor/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                          <PxIcon name="external-link" /> Open Full Site
+                        </a>
+                      </div>
+                      <div className="iframe-wrapper">
+                        <iframe 
+                          src="https://zapicojunredexter.github.io/jp-tutor/"
+                          title="Kana Practice Preview"
+                          className="project-iframe"
+                          loading="lazy"
+                          style={{
+                            width: '1280px',
+                            height: '800px'
+                          }}
+                        />
+                        <div 
+                          className="iframe-overlay" 
+                          onClick={() => window.open('https://zapicojunredexter.github.io/jp-tutor/', '_blank')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="innovation-item">
+                  <div className="innovation-header">
+                    <span className="innovation-icon"><PxIcon name="brush" /></span>
+                    <h4>Interactive Portfolio</h4>
+                  </div>
+                  <div className="innovation-details">
+                    <div className="project-preview">
+                      <div className="preview-image">
+                        <span className="preview-icon"><PxIcon name="gamepad" /></span>
+                      </div>
+                      <div className="preview-info">
+                        <span className="project-type">Portfolio</span>
+                        <span className="project-url">junre.dev</span>
+                      </div>
+                    </div>
+                    <div className="innovation-tech">
+                      <span className="tech-badge">React</span>
+                      <span className="tech-badge">TypeScript</span>
+                      <span className="tech-badge">CSS3</span>
+                    </div>
+                    <div className="innovation-description">
+                      <p>Mario-style interactive portfolio with parallax scrolling and animated character</p>
+                    </div>
+                    <div className="project-features">
+                      <span className="feature"><PxIcon name="gamepad" /> Game-Style UI</span>
+                      <span className="feature"><PxIcon name="tree-pine" /> Parallax Background</span>
+                      <span className="feature"><PxIcon name="user" /> Animated Character</span>
+                    </div>
+                    <div className="project-preview-frame">
+                      <div className="preview-header">
+                        <span className="preview-label">Current Portfolio</span>
+                        <span className="preview-link"><PxIcon name="gamepad" /> You're viewing it now!</span>
+                      </div>
+                      <div className="portfolio-preview">
+                        <div className="preview-placeholder">
+                          <span className="preview-icon-large"><PxIcon name="gamepad" /></span>
+                          <p>Mario-style Interactive Portfolio</p>
+                          <span className="preview-subtitle">Scroll to explore!</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="innovation-item">
+                  <div className="innovation-header">
+                    <span className="innovation-icon"><PxIcon name="analytics" /></span>
+                    <h4>Sales Analytics Dashboard</h4>
+                  </div>
+                  <div className="innovation-details">
+                    <div className="project-preview">
+                      <div className="preview-image">
+                        <span className="preview-icon"><PxIcon name="analytics" /></span>
+                      </div>
+                      <div className="preview-info">
+                        <span className="project-type">Business Analytics</span>
+                        <span className="project-url">reports.vananaz.com</span>
+                      </div>
+                    </div>
+                    <div className="innovation-tech">
+                      <span className="tech-badge">HTML5</span>
+                      <span className="tech-badge">CSS3</span>
+                      <span className="tech-badge">JavaScript</span>
+                    </div>
+                    <div className="innovation-description">
+                      <p>Comprehensive sales analytics dashboard with revenue tracking, product performance, and regional distribution insights</p>
+                    </div>
+                    <div className="project-features">
+                      <span className="feature"><PxIcon name="chart-line" /> Revenue Analytics</span>
+                      <span className="feature"><PxIcon name="earth" /> Regional Performance</span>
+                      <span className="feature"><PxIcon name="chart" /> Product Metrics</span>
+                    </div>
+                    <div className="project-preview-frame">
+                      <div className="preview-header">
+                        <span className="preview-label">Live Preview</span>
+                        <a href="https://zapicojunredexter.github.io/reports/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                          <PxIcon name="external-link" /> Open Full Site
+                        </a>
+                      </div>
+                      <div className="iframe-wrapper">
+                        <iframe 
+                          src="https://zapicojunredexter.github.io/reports/"
+                          title="Sales Analytics Dashboard Preview"
+                          className="project-iframe"
+                          loading="lazy"
+                          style={{
+                            width: '1280px',
+                            height: '800px'
+                          }}
+                        />
+                        <div 
+                          className="iframe-overlay" 
+                          onClick={() => window.open('https://zapicojunredexter.github.io/reports/', '_blank')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="innovation-item">
+                  <div className="innovation-header">
                     <span className="innovation-icon"><PxIcon name="camera" /></span>
                     <h4>Nice Shot Creatives</h4>
                   </div>
@@ -926,17 +1135,17 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon"><PxIcon name="monitor" /></span>
-                    <h4>TerraTech Solutions</h4>
+                    <span className="innovation-icon"><PxIcon name="zap" /></span>
+                    <h4>Pokedex</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon"><PxIcon name="monitor" /></span>
+                        <span className="preview-icon"><PxIcon name="zap" /></span>
                       </div>
                       <div className="preview-info">
-                        <span className="project-type">Tech Company</span>
-                        <span className="project-url">terratech.com</span>
+                        <span className="project-type">Pokemon Database</span>
+                        <span className="project-url">pokedex.com</span>
                       </div>
                     </div>
                     <div className="innovation-tech">
@@ -945,24 +1154,24 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Complete technology solutions company website with hardware and software services</p>
+                      <p>Interactive Pokemon database with search functionality and detailed Pokemon information</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature"><PxIcon name="sliders" /> Service Showcase</span>
-                      <span className="feature"><PxIcon name="cpu" /> Hardware Catalog</span>
-                      <span className="feature"><PxIcon name="phone" /> Contact Integration</span>
+                      <span className="feature"><PxIcon name="search" /> Search Functionality</span>
+                      <span className="feature"><PxIcon name="smartphone" /> Responsive Design</span>
+                      <span className="feature"><PxIcon name="gamepad" /> Pokemon Database</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
-                        <a href="https://zapicojunredexter.github.io/terratech/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                        <a href="https://zapicojunredexter.github.io/pokedex/" target="_blank" rel="noopener noreferrer" className="preview-link">
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
                         <iframe 
-                          src="https://zapicojunredexter.github.io/terratech/"
-                          title="TerraTech Solutions Preview"
+                          src="https://zapicojunredexter.github.io/pokedex/"
+                          title="Pokedex Preview"
                           className="project-iframe"
                           loading="lazy"
                           style={{
@@ -972,7 +1181,7 @@ function App() {
                         />
                         <div 
                           className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/terratech/', '_blank')}
+                          onClick={() => window.open('https://zapicojunredexter.github.io/pokedex/', '_blank')}
                         />
                       </div>
                     </div>
@@ -1091,17 +1300,17 @@ function App() {
 
                 <div className="innovation-item">
                   <div className="innovation-header">
-                    <span className="innovation-icon"><PxIcon name="analytics" /></span>
-                    <h4>Sales Analytics Dashboard</h4>
+                    <span className="innovation-icon"><PxIcon name="monitor" /></span>
+                    <h4>TerraTech Solutions</h4>
                   </div>
                   <div className="innovation-details">
                     <div className="project-preview">
                       <div className="preview-image">
-                        <span className="preview-icon"><PxIcon name="analytics" /></span>
+                        <span className="preview-icon"><PxIcon name="monitor" /></span>
                       </div>
                       <div className="preview-info">
-                        <span className="project-type">Business Analytics</span>
-                        <span className="project-url">reports.vananaz.com</span>
+                        <span className="project-type">Tech Company</span>
+                        <span className="project-url">terratech.com</span>
                       </div>
                     </div>
                     <div className="innovation-tech">
@@ -1110,24 +1319,24 @@ function App() {
                       <span className="tech-badge">JavaScript</span>
                     </div>
                     <div className="innovation-description">
-                      <p>Comprehensive sales analytics dashboard with revenue tracking, product performance, and regional distribution insights</p>
+                      <p>Complete technology solutions company website with hardware and software services</p>
                     </div>
                     <div className="project-features">
-                      <span className="feature"><PxIcon name="chart-line" /> Revenue Analytics</span>
-                      <span className="feature"><PxIcon name="earth" /> Regional Performance</span>
-                      <span className="feature"><PxIcon name="chart" /> Product Metrics</span>
+                      <span className="feature"><PxIcon name="sliders" /> Service Showcase</span>
+                      <span className="feature"><PxIcon name="cpu" /> Hardware Catalog</span>
+                      <span className="feature"><PxIcon name="phone" /> Contact Integration</span>
                     </div>
                     <div className="project-preview-frame">
                       <div className="preview-header">
                         <span className="preview-label">Live Preview</span>
-                        <a href="https://zapicojunredexter.github.io/reports/" target="_blank" rel="noopener noreferrer" className="preview-link">
+                        <a href="https://zapicojunredexter.github.io/terratech/" target="_blank" rel="noopener noreferrer" className="preview-link">
                           <PxIcon name="external-link" /> Open Full Site
                         </a>
                       </div>
                       <div className="iframe-wrapper">
                         <iframe 
-                          src="https://zapicojunredexter.github.io/reports/"
-                          title="Sales Analytics Dashboard Preview"
+                          src="https://zapicojunredexter.github.io/terratech/"
+                          title="TerraTech Solutions Preview"
                           className="project-iframe"
                           loading="lazy"
                           style={{
@@ -1137,62 +1346,7 @@ function App() {
                         />
                         <div 
                           className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/reports/', '_blank')}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="innovation-item">
-                  <div className="innovation-header">
-                    <span className="innovation-icon"><PxIcon name="zap" /></span>
-                    <h4>Pokedex</h4>
-                  </div>
-                  <div className="innovation-details">
-                    <div className="project-preview">
-                      <div className="preview-image">
-                        <span className="preview-icon"><PxIcon name="zap" /></span>
-                      </div>
-                      <div className="preview-info">
-                        <span className="project-type">Pokemon Database</span>
-                        <span className="project-url">pokedex.com</span>
-                      </div>
-                    </div>
-                    <div className="innovation-tech">
-                      <span className="tech-badge">HTML5</span>
-                      <span className="tech-badge">CSS3</span>
-                      <span className="tech-badge">JavaScript</span>
-                    </div>
-                    <div className="innovation-description">
-                      <p>Interactive Pokemon database with search functionality and detailed Pokemon information</p>
-                    </div>
-                    <div className="project-features">
-                      <span className="feature"><PxIcon name="search" /> Search Functionality</span>
-                      <span className="feature"><PxIcon name="smartphone" /> Responsive Design</span>
-                      <span className="feature"><PxIcon name="gamepad" /> Pokemon Database</span>
-                    </div>
-                    <div className="project-preview-frame">
-                      <div className="preview-header">
-                        <span className="preview-label">Live Preview</span>
-                        <a href="https://zapicojunredexter.github.io/pokedex/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          <PxIcon name="external-link" /> Open Full Site
-                        </a>
-                      </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/pokedex/"
-                          title="Pokedex Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/pokedex/', '_blank')}
+                          onClick={() => window.open('https://zapicojunredexter.github.io/terratech/', '_blank')}
                         />
                       </div>
                     </div>
@@ -1249,106 +1403,6 @@ function App() {
                           className="iframe-overlay" 
                           onClick={() => window.open('https://zapicojunredexter.github.io/ce-portfolio/', '_blank')}
                         />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div className="innovation-item">
-                  <div className="innovation-header">
-                    <span className="innovation-icon"><PxIcon name="map" /></span>
-                    <h4>GeoScape Explorer</h4>
-                  </div>
-                  <div className="innovation-details">
-                    <div className="project-preview">
-                      <div className="preview-image">
-                        <span className="preview-icon"><PxIcon name="map" /></span>
-                      </div>
-                      <div className="preview-info">
-                        <span className="project-type">3D Geospatial Explorer</span>
-                        <span className="project-url">zapicojunredexter.github.io/3d-map</span>
-                      </div>
-                    </div>
-                    <div className="innovation-tech">
-                      <span className="tech-badge">Three.js</span>
-                      <span className="tech-badge">WebGL</span>
-                      <span className="tech-badge">JavaScript</span>
-                    </div>
-                    <div className="innovation-description">
-                      <p>Interactive 3D geospatial explorer with first-person movement, mouse look, and immersive map navigation</p>
-                    </div>
-                    <div className="project-features">
-                      <span className="feature"><PxIcon name="earth" /> 3D Terrain</span>
-                      <span className="feature"><PxIcon name="keyboard" /> WASD Controls</span>
-                      <span className="feature"><PxIcon name="mouse" /> Mouse Look</span>
-                    </div>
-                    <div className="project-preview-frame">
-                      <div className="preview-header">
-                        <span className="preview-label">Live Preview</span>
-                        <a href="https://zapicojunredexter.github.io/3d-map/" target="_blank" rel="noopener noreferrer" className="preview-link">
-                          <PxIcon name="external-link" /> Open Full Site
-                        </a>
-                      </div>
-                      <div className="iframe-wrapper">
-                        <iframe 
-                          src="https://zapicojunredexter.github.io/3d-map/"
-                          title="GeoScape Explorer Preview"
-                          className="project-iframe"
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '800px'
-                          }}
-                        />
-                        <div 
-                          className="iframe-overlay" 
-                          onClick={() => window.open('https://zapicojunredexter.github.io/3d-map/', '_blank')}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="innovation-item">
-                  <div className="innovation-header">
-                    <span className="innovation-icon"><PxIcon name="brush" /></span>
-                    <h4>Interactive Portfolio</h4>
-                  </div>
-                  <div className="innovation-details">
-                    <div className="project-preview">
-                      <div className="preview-image">
-                        <span className="preview-icon"><PxIcon name="gamepad" /></span>
-                      </div>
-                      <div className="preview-info">
-                        <span className="project-type">Portfolio</span>
-                        <span className="project-url">junre.dev</span>
-                      </div>
-                    </div>
-                    <div className="innovation-tech">
-                      <span className="tech-badge">React</span>
-                      <span className="tech-badge">TypeScript</span>
-                      <span className="tech-badge">CSS3</span>
-                    </div>
-                    <div className="innovation-description">
-                      <p>Mario-style interactive portfolio with parallax scrolling and animated character</p>
-                    </div>
-                    <div className="project-features">
-                      <span className="feature"><PxIcon name="gamepad" /> Game-Style UI</span>
-                      <span className="feature"><PxIcon name="tree-pine" /> Parallax Background</span>
-                      <span className="feature"><PxIcon name="user" /> Animated Character</span>
-                    </div>
-                    <div className="project-preview-frame">
-                      <div className="preview-header">
-                        <span className="preview-label">Current Portfolio</span>
-                        <span className="preview-link"><PxIcon name="gamepad" /> You're viewing it now!</span>
-                      </div>
-                      <div className="portfolio-preview">
-                        <div className="preview-placeholder">
-                          <span className="preview-icon-large"><PxIcon name="gamepad" /></span>
-                          <p>Mario-style Interactive Portfolio</p>
-                          <span className="preview-subtitle">Scroll to explore!</span>
-                        </div>
                       </div>
                     </div>
                   </div>
